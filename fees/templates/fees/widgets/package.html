@@ -1,0 +1,15 @@
+{% load i18n %}
+
+<strong>{{ package }}</strong><br>
+{% for pricing in package.pricing_set.all %}
+    {{ pricing.get_price_display }}<br>
+    {{ pricing.get_duration_display }}<br>
+    {% if pricing.price_per_month != pricing.price %}
+        (~{{ pricing.get_price_per_month_display }} / {% trans 'month' %})<br>
+    {% endif %}
+    <a href="{{ pricing.get_add_to_cart_url }}" class="d-block btn btn-outline-dark rounded-0 {% if not pricing.package.is_available %}disabled{% endif %}">{% trans 'Choose' %}</a><br>
+    <br>
+{% empty %}
+    <a href="#" class="d-block btn btn-outline-dark rounded-0 {% if not pricing.package.is_available %}disabled{% endif %}">{% trans 'Choose' %}</a><br>
+    <br>
+{% endfor %}
