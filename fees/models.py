@@ -117,7 +117,7 @@ class Package(models.Model):
 
     def get_quotas(self):
         quota_dic = {}
-        for plan_quota in PackageQuota.objects.filter(plan=self).select_related('quota'):
+        for plan_quota in PackageQuota.objects.filter(package=self).select_related('quota'):
             quota_dic[plan_quota.quota.codename] = plan_quota.value
         return quota_dic
 
@@ -462,8 +462,8 @@ class Plan(models.Model):
             expiration = None if package.is_free() else now() + timedelta(days=package.trial_duration)
 
         return Plan.objects.create(
-            user=purchaser,
-            plan=package,
+            purchaser=purchaser,
+            package=package,
             pricing=pricing,
             # active=False,
             expiration=expiration,
@@ -471,8 +471,7 @@ class Plan(models.Model):
 
     @classmethod
     def create_for_users_without_plan(cls):
-        purchaser_model = get_purchaser_model
-        purchasers = purchaser_model().objects.filter(plan=None)
+        purchasers = get_purchaser_model().objects.filter(plan=None)
 
         for purchaser in purchasers:
             Plan.create_for_purchaser(purchaser)

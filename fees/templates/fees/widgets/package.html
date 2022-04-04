@@ -1,6 +1,11 @@
 {% load i18n %}
 
 <strong>{{ package }}</strong><br>
+{% for package_quota in package.packagequota_set.all %}
+    <u>{{ package_quota.quota.name_i18n }}</u>:{{ package_quota.value }} {{ package_quota.quota.unit }}
+    ({{ package_quota.quota.description_i18n }})<br>
+{% endfor %}
+
 {% for pricing in package.pricing_set.all %}
     {{ pricing.get_price_display }}<br>
     {{ pricing.get_duration_display }}<br>

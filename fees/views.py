@@ -10,6 +10,7 @@ class PackageListView(ListView):
 class PlanDetailView(DetailView):
     model = Plan
 
+    # TODO: get purchaser
     def get_object(self, queryset=None):
         try:
             return self.request.user.subscription

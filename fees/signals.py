@@ -6,6 +6,7 @@ from django.dispatch import Signal, receiver
 # TODO: commerce
 # from commerce.models import Cart, Order
 # from commerce.signals import cart_updated
+from fees.helpers import get_purchaser_model
 from fees.models import Plan, Pricing
 from pragmatic.signals import apm_custom_context, SignalsHelper
 
@@ -60,14 +61,14 @@ If you are using django-registration there is no need to call this signal.
 """
 
 
-@receiver(post_save, sender=User)
-def set_default_user_plan(sender, instance, created, **kwargs):
+@receiver(post_save, sender=get_purchaser_model())
+def set_default_purchaser_plan(sender, instance, created, **kwargs):
     """
     Creates default plan for the new user but also extending an account for default grace period.
     """
 
     if created:
-        Plan.create_for_user(instance)
+        Plan.create_for_purchaser(instance)
 
 
 # TODO: check
