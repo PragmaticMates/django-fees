@@ -14,7 +14,7 @@ class PurchaserLinkMixin(object):
         purchaser_model = get_purchaser_model()
         app_label = purchaser_model._meta.app_label
         model_name = purchaser_model._meta.model_name
-        change_url = reverse('admin:%s_%s_change' % (app_label, model_name), args=(obj.user.id,))
+        change_url = reverse('admin:%s_%s_change' % (app_label, model_name), args=(obj.purchaser.id,))
         return format_html('<a href="{}">{}</a>', change_url, obj.user.username)
 
     purchaser_link.short_description = _('Purchaser')
@@ -122,7 +122,7 @@ class PlanAdmin(PurchaserLinkMixin, admin.ModelAdmin):
     list_select_related = True
     readonly_fields = ['purchaser_link', ]
     # inlines = (RecurringPlanInline,)
-    fields = ('purchaser', 'purchaser_link', 'package', 'pricing', 'expiration', )  #'is_active')
+    fields = ('purchaser', 'package', 'pricing', 'expiration', )  #'is_active')
     autocomplete_fields = ['purchaser', 'package', ]
 
     def recurring__automatic_renewal(self, obj):
@@ -146,5 +146,5 @@ class PlanAdmin(PurchaserLinkMixin, admin.ModelAdmin):
 
 admin.site.register(Quota, QuotaAdmin)
 admin.site.register(Package, PackageAdmin)
-admin.site.register(Pricing, PricingAdmin)
+# admin.site.register(Pricing, PricingAdmin)
 admin.site.register(Plan, PlanAdmin)
