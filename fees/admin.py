@@ -70,13 +70,13 @@ class PackageAdmin(admin.ModelAdmin):
     search_fields = ('name',
                      # 'customized__username', 'customized__email',
                      )
-    list_filter = ('is_available', 'is_visible')
+    list_filter = ('is_default', 'is_available', 'is_visible')
     list_display = [
         'title',
         # 'description',
         # 'customized',
         'trial_duration',
-        'is_default', 'is_available',
+        'is_default', 'is_available', 'is_visible',
         'created',
         # 'move_up_down_links'
     ]
