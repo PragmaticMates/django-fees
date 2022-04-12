@@ -6,6 +6,9 @@ from fees.models import Package, Plan
 class PackageListView(ListView):
     model = Package
 
+    def get_queryset(self):
+        return super().get_queryset().visible()
+
 
 class PlanDetailView(DetailView):
     model = Plan

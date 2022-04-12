@@ -32,11 +32,11 @@ class PricingInline(admin.TabularInline):
 class QuotaAdmin(admin.ModelAdmin):
     list_display = [
         'codename', 'name', 'description', 'unit',
-        'is_boolean',
+        'is_boolean', 'order'
         #'move_up_down_links',
     ]
-
-    list_display_links = list_display
+    list_display_links = ['codename']
+    list_editable = ['order']
 
 
 def copy_package(modeladmin, request, queryset):

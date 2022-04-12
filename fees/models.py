@@ -29,15 +29,16 @@ class Quota(models.Model):
     unit = models.CharField(_('unit'), max_length=100, blank=True)
     description = models.TextField(_('description'), blank=True)
     is_boolean = models.BooleanField(_('is boolean'), default=False)
+    order = models.PositiveSmallIntegerField(verbose_name=_('ordering'), help_text=_('to set order in pricing'), default=1)
     i18n = TranslationField(fields=('name', 'description'))
 
     class Meta:
-        ordering = ('name',)  # TODO: custom ordering
+        ordering = ('order',)
         verbose_name = _("Quota")
         verbose_name_plural = _("Quotas")
 
     def __str__(self):
-        return "%s" % (self.codename, )
+        return "%s" % (self.name_i18n, )
 
 
 class PackageQuotaManager(models.Manager):
@@ -54,6 +55,7 @@ class PackageQuota(models.Model):
     class Meta:
         verbose_name = _("Package quota")
         verbose_name_plural = _("Packages quotas")
+        unique_together = (('package', 'quota'),)
 
 
 class Package(models.Model):
@@ -125,6 +127,11 @@ class Package(models.Model):
         return not self.pricing_set.exists()
     is_free.boolean = True
 
+    def monthly_plan(self):
+        return self.pricing_set.get(period=Pricing.PERIOD_MONTH)
+
+    is_free.boolean = True
+
 
 class Pricing(models.Model):
     PERIOD_DAY = 'DAY'
@@ -157,8 +164,9 @@ class Pricing(models.Model):
 
     class Meta:
         verbose_name = _('pricing')
-        verbose_name_plural = _('pricing plans')
+        verbose_name_plural = _('pricings')
         ordering = ['price']
+        unique_together = (['package', 'period'],)
 
     def __str__(self):
         return f'{self.package} ({self.get_duration_display()})'
