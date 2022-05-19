@@ -16,6 +16,9 @@ class Migration(migrations.Migration):
         migrations.swappable_dependency(fees_settings.PURCHASER_MODEL),
     ]
 
+    for dependency in fees_settings.MIGRATION_DEPENDENCIES:
+        dependencies.append(dependency)
+
     operations = [
         migrations.CreateModel(
             name='Package',

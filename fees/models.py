@@ -160,7 +160,7 @@ class Pricing(models.Model):
     # )
     created = models.DateTimeField(_('created'), auto_now_add=True)
     modified = models.DateTimeField(_('modified'), auto_now=True)
-    objects = PackageQuerySet.as_manager()
+    # objects = PricingQuerySet.as_manager()
 
     class Meta:
         verbose_name = _('pricing')
@@ -179,17 +179,17 @@ class Pricing(models.Model):
         period_display = period_localize[0] if self.duration == 1 else period_localize[1]  # TODO: i18n
         return f'{self.duration} {period_display}'
 
-    # TODO: remove commerce
     def get_price_display(self):
         return f'{self.price} {fees_settings.CURRENCY}'
 
     # TODO: remove commerce
-    def get_add_to_cart_url(self):  # TODO: move to ProductMixin
+    def get_add_to_cart_url(self):  # TODO: move to ProductMixin, template tag?
         if 'commerce' in settings.INSTALLED_APPS:
             content_type = ContentType.objects.get_for_model(self)
-            return reverse('commerce:add_to_cart', args=(content_type.id, self.id))
+            return reverse('commerce:add_to_cart', args=(content_type.id, self.id))  # TODO: human readable URL
         return '#'
-    # TODO: remove commerce
+
+    # TODO: remove commerce, add product availability handler to commerce
     # @property
     # def availability(self):
     #     from commerce.models import AbstractProduct
