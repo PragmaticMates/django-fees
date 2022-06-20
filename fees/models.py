@@ -499,7 +499,7 @@ class Plan(models.Model):
 
     @classmethod
     def create_for_purchasers_without_plan(cls):
-        purchasers = get_purchaser_model().objects.filter(plan=None)
+        purchasers = get_purchaser_model().objects.filter(plan=None).only('pk')
 
         for purchaser in purchasers:
             Plan.create_for_purchaser(purchaser)
