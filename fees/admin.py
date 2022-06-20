@@ -67,7 +67,7 @@ copy_package.short_description = _('Duplicate package')
 
 
 class PackageAdmin(admin.ModelAdmin):
-    search_fields = ('name',
+    search_fields = ('title',
                      # 'customized__username', 'customized__email',
                      )
     list_filter = ('is_default', 'is_available', 'is_visible')
