@@ -3,6 +3,7 @@ from datetime import date, timedelta
 
 from dateutil.relativedelta import relativedelta
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator
@@ -103,19 +104,38 @@ class Package(models.Model):
 
     @classmethod
     def get_current_package(cls, purchaser):
-        """ Get current package for purchaser. If plan is expired, return None """
+        """
+        Get current package for purchaser.
+        App should be responsible for creating purchaser's plan (after sign up for example).
+        If plan is expired or not present, return default package if available else None.
+        """
         # We need to handle both default package (new purchaser -> TRIAL) and expired plan -> None
 
         is_anonymous = isinstance(purchaser, get_user_model()) and purchaser.is_anonymous
 
-        if not purchaser or is_anonymous or not hasattr(purchaser, 'plan') or purchaser.plan.is_expired():
+        # anonymous user
+        if not purchaser or is_anonymous:
             # TODO: any other rules?
             return None
-            # default_package = Package.get_default_package()
-            # if default_package is None or not default_package.is_free():
-            #     raise ValidationError(_('Plan has expired'))
-            # return default_plan
-        return purchaser.plan.package
+
+        plan_is_set = hasattr(purchaser, 'plan')
+
+        # currently, valid (not expired) package
+        if plan_is_set and not purchaser.plan.is_expired():
+            return purchaser.plan.package
+
+        # default package
+        default_package = Package.get_default_package()
+
+        # validation of default package price (default package can't be free)
+        if default_package is not None and not default_package.is_free():
+            if plan_is_set:
+                raise ValidationError(_('Plan has expired and default package is not free'))
+            else:
+                raise ValidationError(_('Plan not found and default package is not free'))
+
+        # default package for expired or not present plan
+        return default_package
 
     def get_quotas(self):
         quota_dic = {}
