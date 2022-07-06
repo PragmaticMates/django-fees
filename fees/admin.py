@@ -81,9 +81,10 @@ class PackageAdmin(admin.ModelAdmin):
         'trial_duration',
         'is_default', 'is_fallback', 'is_available', 'is_visible',
         'created',
+        'order'
         # 'move_up_down_links'
     ]
-    list_editable = ('is_default', 'is_fallback', 'is_available', 'is_visible')
+    list_editable = ('is_default', 'is_fallback', 'is_available', 'is_visible', 'order')
     list_filter = ('is_default', 'is_fallback', 'is_available', 'is_visible')
     inlines = (
         PricingInline,
@@ -131,13 +132,14 @@ class PricingAdmin(admin.ModelAdmin):
     ]
 
 
+@admin.register(Plan)
 class PlanAdmin(PurchaserLinkMixin, admin.ModelAdmin):
     actions = ['send_reminder']
     list_filter = (
         #'is_active',
-        'expiration', 'package__title', 'package__is_available', 'package__is_visible', 'modified', 'pricing')
+        'activation', 'expiration', 'package__title', 'package__is_available', 'package__is_visible', 'modified', 'pricing')
     search_fields = ('purchaser__email', 'package__title',)
-    list_display = ('id', 'purchaser', 'package', 'pricing', 'expiration',  # 'is_active',
+    list_display = ('id', 'purchaser', 'package', 'pricing', 'activation', 'expiration',  # 'is_active',
                     # 'recurring__automatic_renewal', 'recurring__pricing'
                     'modified')
     list_select_related = True
@@ -167,4 +169,3 @@ class PlanAdmin(PurchaserLinkMixin, admin.ModelAdmin):
 
 admin.site.register(Quota, QuotaAdmin)
 # admin.site.register(Pricing, PricingAdmin)
-admin.site.register(Plan, PlanAdmin)

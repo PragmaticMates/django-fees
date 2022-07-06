@@ -275,23 +275,25 @@ class Plan(models.Model):
     """
     Currently selected plan for purchaser.
     """
-    purchaser = models.OneToOneField(
+    purchaser = models.ForeignKey(
         get_purchaser_model(), verbose_name=_('purchaser'),
-        on_delete=models.CASCADE, related_name='plan', related_query_name='plan'
+        on_delete=models.CASCADE,
     )
     package = models.ForeignKey(Package, verbose_name=_('package'), on_delete=models.CASCADE)
     pricing = models.ForeignKey(Pricing, help_text=_('pricing'), default=None,
                                 null=True, blank=True, on_delete=models.CASCADE)
+    activation = models.DateField(_('activation'), auto_now_add=True)
     expiration = models.DateField(_('expires'), default=None, blank=True, null=True, db_index=True)
     # is_active = models.BooleanField(_('active'), default=True, db_index=True)
     # is_recurring = models.BooleanField(_('active'), default=True, db_index=True)  # TODO: can be turned on/turned off
     modified = models.DateTimeField(_('modified'), auto_now=True)
-
     objects = PlanQuerySet.as_manager()
 
     class Meta:
         verbose_name = _("Plan")
         verbose_name_plural = _("Plans")
+        ordering = ['-activation']
+        get_latest_by = 'expiration'
 
     def __str__(self):
         if self.pricing:
