@@ -140,7 +140,8 @@ class Package(models.Model):
     def get_quotas(self):
         quota_dic = {}
         for plan_quota in PackageQuota.objects.filter(package=self).select_related('quota'):
-            if plan_quota.value > 0:
+            is_available = plan_quota.value is None or plan_quota.value > 0
+            if is_available:
                 quota_dic[plan_quota.quota.codename] = plan_quota.value
         return quota_dic
 

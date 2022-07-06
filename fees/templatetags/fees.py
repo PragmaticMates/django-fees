@@ -16,8 +16,10 @@ def package_quotas_info(package):
         codename = package_quota['quota__codename']
         quota = quotas_info[codename]
 
+        is_available = package_quota['value'] is None or package_quota['value'] > 0
+
         quota.update({
-            'is_available': package_quota['value'] > 0,
+            'is_available': is_available,
         })
 
         if not quota['is_boolean']:
