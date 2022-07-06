@@ -139,11 +139,15 @@ class Package(models.Model):
 
     def get_quotas(self):
         quota_dic = {}
-        for plan_quota in PackageQuota.objects.filter(package=self).select_related('quota'):
-            is_available = plan_quota.value is None or plan_quota.value > 0
-            if is_available:
-                quota_dic[plan_quota.quota.codename] = plan_quota.value
+        for package_quota in PackageQuota.objects.filter(package=self).select_related('quota'):
+            if Package.is_quota_available(package_quota):
+                quota_dic[package_quota.quota.codename] = package_quota.value
         return quota_dic
+
+    @staticmethod
+    def is_quota_available(package_quota):
+        value = package_quota['value'] if isinstance(package_quota, dict) else package_quota.value
+        return value is None or value > 0
 
     def is_free(self):
         return not self.pricing_set.exists()

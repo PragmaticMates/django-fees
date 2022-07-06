@@ -1,6 +1,6 @@
 from django import template
 
-from fees.models import Quota
+from fees.models import Quota, Package
 
 register = template.Library()
 
@@ -16,11 +16,7 @@ def package_quotas_info(package):
         codename = package_quota['quota__codename']
         quota = quotas_info[codename]
 
-        is_available = package_quota['value'] is None or package_quota['value'] > 0
-
-        quota.update({
-            'is_available': is_available,
-        })
+        quota.update({'is_available': Package.is_quota_available(package_quota)})
 
         if not quota['is_boolean']:
             quota.update({
