@@ -69,6 +69,7 @@ def copy_package(modeladmin, request, queryset):
 copy_package.short_description = _('Duplicate package')
 
 
+@admin.register(Package)
 class PackageAdmin(admin.ModelAdmin):
     search_fields = ('title',
                      # 'customized__username', 'customized__email',
@@ -105,6 +106,13 @@ class PackageAdmin(admin.ModelAdmin):
         except IntegrityError as e:
             messages.error(request, str(e))
             return redirect(request.get_full_path())
+
+    def save_model(self, request, obj, form, change):
+        if obj.is_default:
+            self.model.objects.filter(is_default=True).exclude(id=obj.id).update(is_default=False)
+        if obj.is_fallback:
+            self.model.objects.filter(is_fallback=True).exclude(id=obj.id).update(is_fallback=False)
+        return super().save_model(request, obj, form, change)
 
 
 # class RecurringPlanInline(admin.StackedInline):
@@ -158,6 +166,5 @@ class PlanAdmin(PurchaserLinkMixin, admin.ModelAdmin):
 
 
 admin.site.register(Quota, QuotaAdmin)
-admin.site.register(Package, PackageAdmin)
 # admin.site.register(Pricing, PricingAdmin)
 admin.site.register(Plan, PlanAdmin)

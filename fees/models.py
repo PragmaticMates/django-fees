@@ -65,11 +65,13 @@ class Package(models.Model):
     order = models.PositiveSmallIntegerField(verbose_name=_('ordering'), help_text=_('to set order in pricing'), unique=True, default=1)
     trial_duration = models.PositiveSmallIntegerField(verbose_name=_('trial duration'), help_text=_('in days'), default=0)
     is_default = models.BooleanField(
+        _('default'),
         help_text=_('Default package for new purchaser (useful for trial packages). Only 1 default package at a time can be set.'),
         default=False,
         db_index=True,
     )
     is_fallback = models.BooleanField(
+        _('fallback'),
         help_text=_('Fallback package for purchaser when its subscription expires or trial ends (useful for freemium packages). Only 1 fallback package at a time can be set.'),
         default=False,
         db_index=True,
