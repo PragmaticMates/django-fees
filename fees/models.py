@@ -65,7 +65,12 @@ class Package(models.Model):
     order = models.PositiveSmallIntegerField(verbose_name=_('ordering'), help_text=_('to set order in pricing'), unique=True, default=1)
     trial_duration = models.PositiveSmallIntegerField(verbose_name=_('trial duration'), help_text=_('in days'), default=0)
     is_default = models.BooleanField(
-        help_text=_('Default package for purchaser'),
+        help_text=_('Default package for new purchaser (useful for trial packages). Only 1 default package at a time can be set.'),
+        default=False,
+        db_index=True,
+    )
+    is_fallback = models.BooleanField(
+        help_text=_('Fallback package for purchaser when its subscription expires or trial ends (useful for freemium packages). Only 1 fallback package at a time can be set.'),
         default=False,
         db_index=True,
     )
@@ -87,6 +92,10 @@ class Package(models.Model):
         verbose_name = _('package')
         verbose_name_plural = _('packages')
         ordering = ['order']
+        constraints = [
+            models.UniqueConstraint(fields=['is_default'], condition=models.Q(is_default=True), name='unique_default'),
+            models.UniqueConstraint(fields=['is_fallback'], condition=models.Q(is_fallback=True), name='unique_fallback'),
+        ]
 
     def __str__(self):
         return self.title
@@ -103,13 +112,21 @@ class Package(models.Model):
         return return_value
 
     @classmethod
+    def get_fallback_package(cls):
+        try:
+            return_value = cls.objects.get(is_fallback=True)
+        except cls.DoesNotExist:
+            return_value = None
+        return return_value
+
+    @classmethod
     def get_current_package(cls, purchaser):
         """
         Get current package for purchaser.
         App should be responsible for creating purchaser's plan (after sign up for example).
-        If plan is expired or not present, return default package if available else None.
+        If plan is expired or not present, return fallback package if available else None.
         """
-        # We need to handle both default package (new purchaser -> TRIAL) and expired plan -> None
+        # We need to handle both default package (new purchaser -> TRIAL) and expired plan -> fallback
 
         is_anonymous = isinstance(purchaser, get_user_model()) and purchaser.is_anonymous
 
@@ -124,18 +141,18 @@ class Package(models.Model):
         if plan_is_set and not purchaser.plan.is_expired():
             return purchaser.plan.package
 
-        # default package
-        default_package = Package.get_default_package()
+        # fallback package
+        fallback_package = Package.get_fallback_package()
 
-        # validation of default package price (default package can't be free)
-        if default_package is not None and not default_package.is_free():
+        # validation of default package price (fallback package can't be free)
+        if fallback_package is not None and not fallback_package.is_free():
             if plan_is_set:
-                raise ValidationError(_('Plan has expired and default package is not free'))
+                raise ValidationError(_('Plan has expired and fallback package is not free'))
             else:
-                raise ValidationError(_('Plan not found and default package is not free'))
+                raise ValidationError(_('Plan not found and fallback package is not free'))
 
-        # default package for expired or not present plan
-        return default_package
+        # fallback package for expired or not present plan
+        return fallback_package
 
     def get_quotas(self):
         quota_dic = {}

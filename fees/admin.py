@@ -1,6 +1,8 @@
 from copy import deepcopy
 
 from django.contrib import admin, messages
+from django.contrib.admin.options import csrf_protect_m
+from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.html import format_html
@@ -48,6 +50,7 @@ def copy_package(modeladmin, request, queryset):
         package_copy.id = None
         package_copy.is_available = False
         package_copy.is_default = False
+        package_copy.is_fallback = False
         package_copy.trial_duration = 0
         package_copy.created = None
         package_copy.save(force_insert=True)
@@ -70,16 +73,17 @@ class PackageAdmin(admin.ModelAdmin):
     search_fields = ('title',
                      # 'customized__username', 'customized__email',
                      )
-    list_filter = ('is_default', 'is_available', 'is_visible')
     list_display = [
         'title',
         # 'description',
         # 'customized',
         'trial_duration',
-        'is_default', 'is_available', 'is_visible',
+        'is_default', 'is_fallback', 'is_available', 'is_visible',
         'created',
         # 'move_up_down_links'
     ]
+    list_editable = ('is_default', 'is_fallback', 'is_available', 'is_visible')
+    list_filter = ('is_default', 'is_fallback', 'is_available', 'is_visible')
     inlines = (
         PricingInline,
         QuotaInline,
@@ -92,6 +96,15 @@ class PackageAdmin(admin.ModelAdmin):
     #     return super(PlanAdmin, self).queryset(request).select_related(
     #         'customized'
     #     )
+
+    @csrf_protect_m
+    def changelist_view(self, request, extra_context=None):
+        from django.db.utils import IntegrityError
+        try:
+            return super().changelist_view(request, extra_context)
+        except IntegrityError as e:
+            messages.error(request, str(e))
+            return redirect(request.get_full_path())
 
 
 # class RecurringPlanInline(admin.StackedInline):

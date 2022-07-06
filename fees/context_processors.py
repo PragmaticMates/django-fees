@@ -1,12 +1,21 @@
-from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
+
+from fees.models import Package
 
 
-def user_plan(request):
-    plan = None
+def purchaser_plan(request):
+    # let's presume the purchaser is set in the request, otherwise use request.user as purchaser instance
+    purchaser = getattr(request, 'purchaser', request.user)
 
-    if 'inventor.core.subscriptions' in settings.INSTALLED_APPS:
-        from inventor.core.subscriptions.models import Plan
-        plan = Plan.get_current_plan(request.user)
+    try:
+        plan = purchaser.plan
+        package = purchaser.plan.package
+    except ObjectDoesNotExist:
+        plan = None
+        package = Package.get_default_package()
 
-    return {'user_plan': plan}
-
+    return {
+        'plan': plan,
+        'package': package,
+        'expiration': plan.expiration if plan else None
+    }
