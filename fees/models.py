@@ -6,7 +6,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.conf import settings
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, EMPTY_VALUES
 from django.urls import reverse
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _, override as override_language
@@ -146,7 +146,7 @@ class Package(models.Model):
         # fallback package
         fallback_package = Package.get_fallback_package()
 
-        # validation of default package price (fallback package can't be free)
+        # validation of fallback package price (fallback package can't be free)
         if fallback_package is not None and not fallback_package.is_free():
             if plan_is_set:
                 raise ValidationError(_('Plan has expired and fallback package is not free'))
@@ -283,7 +283,8 @@ class Plan(models.Model):
     pricing = models.ForeignKey(Pricing, help_text=_('pricing'), default=None,
                                 null=True, blank=True, on_delete=models.CASCADE)
     activation = models.DateField(_('activation'), auto_now_add=True)
-    expiration = models.DateField(_('expires'), default=None, blank=True, null=True, db_index=True)
+    expiration = models.DateField(_('expires'), help_text=_('keep blank to calculate automatically by pricing period'),
+        default=None, blank=True, null=True, db_index=True)
     # is_active = models.BooleanField(_('active'), default=True, db_index=True)
     # is_recurring = models.BooleanField(_('active'), default=True, db_index=True)  # TODO: can be turned on/turned off
     modified = models.DateTimeField(_('modified'), auto_now=True)
@@ -299,6 +300,13 @@ class Plan(models.Model):
         if self.pricing:
             return "%s [%s] (%s)" % (self.purchaser, self.package, self.pricing)
         return "%s [%s]" % (self.purchaser, self.package)
+
+    def save(self, **kwargs):
+        # update expiration date by pricing period
+        if self.expiration in EMPTY_VALUES and self.pricing:
+            from_date = self.activation or now().date  # now().date vs date.today()
+            self.expiration = from_date + self.pricing.timedelta
+        return super().save(**kwargs)
 
     # def is_active(self):
     #     return self.active
@@ -347,22 +355,22 @@ class Plan(models.Model):
     #                 days=getattr(settings, 'PLANS_DEFAULT_GRACE_PERIOD', 30))
     #         self.activate()  # this will call self.save()
 
-    def get_plan_extended_from(self, plan):
-        if plan.is_free():
+    def get_plan_extended_from(self, package):
+        if package.is_free():
             return None
-        if not self.is_expired() and self.expiration is not None and self.plan == plan:
+        if not self.is_expired() and self.expiration is not None and self.package == package:
             return self.expiration
         return date.today()
 
-    def get_plan_extended_until(self, plan, pricing):
-        if plan.is_free():
+    def get_plan_extended_until(self, package, pricing):
+        if package.is_free():
             return None
-        if not self.plan.is_free() and self.expiration is None:
+        if not self.package.is_free() and self.expiration is None:
             return None
         if pricing is None:
             return self.expiration
-        return self.get_plan_extended_from(plan) + pricing.timedelta
-        # from_date = self.get_plan_extended_from(plan)
+        return self.get_plan_extended_from(package) + pricing.timedelta
+        # from_date = self.get_plan_extended_from(package)
         # return from_date + self.plan.timedelta
 
     def plan_autorenew_at(self):

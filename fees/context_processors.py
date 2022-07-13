@@ -10,9 +10,9 @@ def purchaser_plan(request):
     try:
         plan = purchaser.plan
         package = purchaser.plan.package
-    except ObjectDoesNotExist:
+    except (ObjectDoesNotExist, AttributeError):
         plan = None
-        package = Package.get_default_package()
+        package = Package.get_fallback_package()
 
     return {
         'plan': plan,
