@@ -137,7 +137,7 @@ class Package(models.Model):
             # TODO: any other rules?
             return None
 
-        plan_is_set = hasattr(purchaser, 'plan')
+        plan_is_set = hasattr(purchaser, 'plan') and purchaser.plan is not None
 
         # currently, valid (not expired) package
         if plan_is_set and not purchaser.plan.is_expired():

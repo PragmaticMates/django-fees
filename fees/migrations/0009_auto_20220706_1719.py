@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('provisioning', '0013_workspace_terms'),
         ('fees', '0008_auto_20220706_1707'),
     ]
 
