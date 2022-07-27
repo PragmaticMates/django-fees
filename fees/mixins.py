@@ -1,8 +1,18 @@
 from django.db.models import F
 from django.utils.translation import ugettext_lazy as _
 
+from fees.models import Package
+
 
 class PurchaserMixin(object):
+    def is_package_quota_available(self, quota):
+        package = self.package
+        return quota in package.get_quotas() if package is not None else False
+
+    @property
+    def package(self):
+        return Package.get_current_package(self)
+
     @property
     def plan(self):
         return self.plan_history\
