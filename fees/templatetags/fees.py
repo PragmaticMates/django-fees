@@ -7,8 +7,16 @@ register = template.Library()
 
 @register.simple_tag
 def package_quotas_info(package):
-    quotas = Quota.objects.values('codename', 'name_i18n', 'is_boolean')
-    all_quotas = dict((q['codename'], {'name': q['name_i18n'], 'is_boolean': q['is_boolean']}) for q in quotas)
+    quotas = Quota.objects.values('codename', 'name_i18n', 'description_i18n', 'is_boolean')
+    all_quotas = dict((
+        q['codename'],
+        {
+            'name': q['name_i18n'],
+            'description': q['description_i18n'],
+            'is_boolean': q['is_boolean'],
+        }
+    ) for q in quotas)
+
     quotas_info = all_quotas.copy()
     package_quotas = package.packagequota_set.all().values('quota__codename', 'value')
 

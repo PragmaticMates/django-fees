@@ -1,8 +1,6 @@
 from django.db.models import F
 from django.utils.translation import ugettext_lazy as _
 
-from fees.models import Package
-
 
 class PurchaserMixin(object):
     def is_package_quota_available(self, quota):
@@ -11,6 +9,7 @@ class PurchaserMixin(object):
 
     @property
     def package(self):
+        from fees.models import Package
         return Package.get_current_package(self)
 
     @property
@@ -24,7 +23,7 @@ class PurchaserMixin(object):
     @plan.setter
     def plan(self, plan):
         if plan.purchaser and plan.purchaser != self:
-            raise ValueError(_('Purchaser already set in the plan: %s') % plan.purchaser)
+            raise ValueError(_('Purchaser of the plan is already set: %s') % plan.purchaser)
         plan.purchaser = self
         plan.save()
 
