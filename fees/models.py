@@ -317,11 +317,16 @@ class Plan(models.Model):
         else:
             return self.expiration < date.today()
 
+    @property
     def days_left(self):
         if self.expiration is None:
             return None
         else:
             return (self.expiration - date.today()).days
+
+    def expires_soon(self):
+        days_left = self.days_left
+        return days_left is not None and days_left <= 7  # TODO: add to settings
 
     # def clean_activation(self):
     #     errors = plan_validation(self.purchaser)
@@ -505,7 +510,7 @@ class Plan(models.Model):
     #     mail_context = {
     #         'purchaser': self.purchaser,
     #         'plan': self,
-    #         'days': self.days_left()
+    #         'days': self.days_left
     #     }
     #     send_template_email([self.user.email], 'mail/remind_expire_title.txt', 'mail/remind_expire_body.txt',
     #                         mail_context, get_user_language(self.user))
