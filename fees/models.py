@@ -360,23 +360,23 @@ class Plan(models.Model):
     #                 days=getattr(settings, 'PLANS_DEFAULT_GRACE_PERIOD', 30))
     #         self.activate()  # this will call self.save()
 
-    def get_plan_extended_from(self, package):
+    def get_extended_from(self, package):
         if package.is_free():
             return None
         if not self.is_expired() and self.expiration is not None and self.package == package:
             return self.expiration
         return date.today()
 
-    def get_plan_extended_until(self, package, pricing):
+    def get_extended_until(self, package, pricing):
         if package.is_free():
             return None
-        if not self.package.is_free() and self.expiration is None:
-            return None
-        if pricing is None:
-            return self.expiration
-        return self.get_plan_extended_from(package) + pricing.timedelta
-        # from_date = self.get_plan_extended_from(package)
-        # return from_date + self.plan.timedelta
+        # if not self.package.is_free() and self.expiration is None:
+        #     return None  # TODO: why? which use case?
+        # if pricing is None:  # TODO: why? which use case?
+        #     return self.expiration
+        # return self.get_extended_from(package) + pricing.timedelta
+        from_date = self.get_extended_from(package)
+        return from_date + pricing.timedelta
 
     def plan_autorenew_at(self):
         """
@@ -418,7 +418,7 @@ class Plan(models.Model):
             raise ValueError(f'Extending by package {package} by invalid pricing {pricing}!')
 
         status = False  # flag; if extending account was successful?
-        new_expiration = self.get_plan_extended_until(package, pricing)
+        new_expiration = self.get_extended_until(package, pricing)
 
         if pricing is None:
             # Process a plan change request (downgrade or upgrade)
