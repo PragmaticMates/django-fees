@@ -18,7 +18,7 @@ from fees.querysets import PackageQuerySet, PlanQuerySet
 from fees import settings as fees_settings
 from .helpers import get_purchaser_model
 
-logger = logging.getLogger('fee')
+logger = logging.getLogger('fees')
 
 
 class Quota(models.Model):
