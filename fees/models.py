@@ -304,7 +304,7 @@ class Plan(models.Model):
     def save(self, **kwargs):
         # update expiration date by pricing period
         if self.expiration in EMPTY_VALUES and self.pricing:
-            from_date = self.activation or now().date  # now().date vs date.today()
+            from_date = self.activation or now().date()  # TODO: now().date() vs date.today()
             self.expiration = from_date + self.pricing.timedelta
         return super().save(**kwargs)
 
@@ -460,7 +460,7 @@ class Plan(models.Model):
             if status:
                 self.expiration = new_expiration
                 self.save()
-                logger.info("Purchaer '%s' [id=%d] has been extended by %d days using package '%s' [id=%d]" % (
+                logger.info("Purchaser '%s' [id=%d] has been extended by %d days using package '%s' [id=%d]" % (
                     self.purchaser, self.purchaser.pk, pricing.timedelta.days, package, package.pk))
                 # if getattr(settings, 'PLANS_SEND_EMAILS_PLAN_EXTENDED', True):
                 # mail_context = {'purchaser': self.purchaser,
