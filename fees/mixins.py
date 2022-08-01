@@ -17,7 +17,8 @@ class PurchaserMixin(object):
         return self.plan_history\
             .active()\
             .order_by(
-                F('expiration').desc(nulls_last=True)
+                '-modified',
+                # F('expiration').desc(nulls_last=True)
             ).first()
 
     @plan.setter
