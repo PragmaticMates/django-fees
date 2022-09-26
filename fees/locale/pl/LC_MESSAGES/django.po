@@ -3,53 +3,54 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 16:05+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2022-09-28 12:18+0000\n"
+"Last-Translator: Rafal Szczepanowicz <rafal@transportly.eu>\n"
+"Language-Team: Polish <https://weblate.swida.sk/projects/django-fees/app/pl/>"
+"\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"X-Generator: Weblate 4.9.1\n"
 
 #: admin.py:22
 msgid "Purchaser"
-msgstr ""
+msgstr "Nabywca"
 
 #: admin.py:69
 msgid "Duplicate package"
-msgstr ""
+msgstr "Zduplikowany pakiet"
 
 #: admin.py:163
 #, python-format
 msgid "Plan %s already expired"
-msgstr ""
+msgstr "Plan %s już wygasł"
 
 #: admin.py:165
 #, python-format
 msgid "Reminder sent (%s)"
-msgstr ""
+msgstr "Przypomnienie wysłane (%s)"
 
 #: admin.py:167
 msgid "Send reminder"
-msgstr ""
+msgstr "Wyślij przypomnienie"
 
 #: apps.py:12
 msgid "Fees"
-msgstr ""
+msgstr "Opłaty"
 
 #: mixins.py:30
 #, python-format
 msgid "Purchaser of the plan is already set: %s"
-msgstr ""
+msgstr "Nabywca planu jest już ustawiony: %s"
 
 #: models.py:28
 msgid "codename"
@@ -57,27 +58,30 @@ msgstr ""
 
 #: models.py:29
 msgid "name"
-msgstr ""
+msgstr "imię"
 
 #: models.py:30
+#, fuzzy
 msgid "unit"
-msgstr ""
+msgstr "jednostka"
 
 #: models.py:31 models.py:64
 msgid "description"
-msgstr ""
+msgstr "opis"
 
 #: models.py:32
+#, fuzzy
 msgid "is boolean"
-msgstr ""
+msgstr "jest logiczne"
 
 #: models.py:33 models.py:65
 msgid "ordering"
-msgstr ""
+msgstr "zamawianie"
 
 #: models.py:33 models.py:65
+#, fuzzy
 msgid "to set order in pricing"
-msgstr ""
+msgstr "ustawić porządek w cenniku"
 
 #: models.py:38
 msgid "Quota"
@@ -97,11 +101,12 @@ msgstr ""
 
 #: models.py:63
 msgid "title"
-msgstr ""
+msgstr "tytuł"
 
 #: models.py:66
+#, fuzzy
 msgid "trial duration"
-msgstr ""
+msgstr "trwanie okresu próbnego/ okres próbny"
 
 #: models.py:66
 msgid "in days"
@@ -109,59 +114,68 @@ msgstr ""
 
 #: models.py:68
 msgid "default"
-msgstr ""
+msgstr "domyślny"
 
 #: models.py:69
 msgid ""
 "Default package for new purchaser (useful for trial packages). Only 1 "
 "default package at a time can be set."
 msgstr ""
+"Domyślny pakiet dla nowego nabywcy (przydatny w przypadku pakietów próbnych)"
+". Jednocześnie można ustawić tylko 1 pakiet domyślny."
 
 #: models.py:74
 msgid "fallback"
 msgstr ""
 
 #: models.py:75
+#, fuzzy
 msgid ""
 "Fallback package for purchaser when its subscription expires or trial ends "
 "(useful for freemium packages). Only 1 fallback package at a time can be set."
 msgstr ""
+"Pakiet awaryjny dla nabywcy po wygaśnięciu subskrypcji lub zakończeniu "
+"okresu próbnego (przydatne w przypadku pakietów freemium). Jednocześnie "
+"można ustawić tylko 1 pakiet awaryjny."
 
 #: models.py:80
 msgid "available"
-msgstr ""
+msgstr "dostępny"
 
 #: models.py:81
 msgid "Is still available for purchase"
-msgstr ""
+msgstr "Jest nadal dostępny w sprzedaży"
 
 #: models.py:84
 msgid "visible"
-msgstr ""
+msgstr "widoczny"
 
 #: models.py:85
 msgid "Is visible in pricing page"
-msgstr ""
+msgstr "Widoczny w cenniku"
 
 #: models.py:88 models.py:206
 msgid "created"
-msgstr ""
+msgstr "stworzony"
 
 #: models.py:89 models.py:207 models.py:290
 msgid "modified"
-msgstr ""
+msgstr "zmodyfikowany"
 
 #: models.py:94 models.py:282
+#, fuzzy
 msgid "package"
-msgstr ""
+msgstr "pakiet"
 
 #: models.py:95
+#, fuzzy
 msgid "packages"
-msgstr ""
+msgstr "pakiety"
 
 #: models.py:152
+#, fuzzy
 msgid "Plan has expired and fallback package is not free"
-msgstr ""
+msgstr "Plan wygasł, a pakiet awaryjny nie jest darmowy"
 
 #: models.py:154
 msgid "Plan not found and fallback package is not free"
@@ -169,108 +183,113 @@ msgstr ""
 
 #: models.py:186 models.py:191
 msgid "day"
-msgstr ""
+msgstr "dzień"
 
 #: models.py:187 models.py:192 templates/fees/widgets/package.html:13
 msgid "month"
-msgstr ""
+msgstr "miesiąc"
 
 #: models.py:188 models.py:193
 msgid "year"
-msgstr ""
+msgstr "rok"
 
 #: models.py:191 templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
 msgid "days"
-msgstr ""
+msgstr "dni"
 
 #: models.py:192
 msgid "months"
-msgstr ""
+msgstr "miesiące"
 
 #: models.py:193
+#, fuzzy
 msgid "years"
-msgstr ""
+msgstr "lata"
 
 #: models.py:197
 msgid "period"
-msgstr ""
+msgstr "okres"
 
 #: models.py:198
+#, fuzzy
 msgid "duration"
-msgstr ""
+msgstr "trwanie"
 
 #: models.py:198
+#, fuzzy
 msgid "in period"
-msgstr ""
+msgstr "w okresie"
 
 #: models.py:200
 msgid "price"
-msgstr ""
+msgstr "cena"
 
 #: models.py:211 models.py:283
 msgid "pricing"
-msgstr ""
+msgstr "cennik"
 
 #: models.py:212
+#, fuzzy
 msgid "pricings"
-msgstr ""
+msgstr "cenniki"
 
 #: models.py:279
 msgid "purchaser"
-msgstr ""
+msgstr "nabywca"
 
 #: models.py:285
 msgid "activation"
-msgstr ""
+msgstr "aktywacja"
 
 #: models.py:286
 msgid "expires"
-msgstr ""
+msgstr "wygasa"
 
 #: models.py:286
+#, fuzzy
 msgid "keep blank to calculate automatically by pricing period"
-msgstr ""
+msgstr "pozostaw puste, aby obliczyć automatycznie według okresu cenowego"
 
 #: models.py:294 templates/fees/plan_detail.html:2
 msgid "Plan"
-msgstr ""
+msgstr "Plan"
 
 #: models.py:295
 msgid "Plans"
-msgstr ""
+msgstr "Plany"
 
 #: models.py:505
 msgid "Your subscription is going to expire soon"
-msgstr ""
+msgstr "Twoja subskrypcja wkrótce wygaśnie"
 
 #: templates/fees/mails/subscription_reminder.txt:1
 #, python-format
 msgid "Hello %(user)s!"
-msgstr ""
+msgstr "Witaj %(user)s!"
 
 #: templates/fees/mails/subscription_reminder.txt:3
 msgid ""
 "We would like to inform you that your subscription is going to expire soon."
-msgstr ""
+msgstr "Informujemy, że Twoja subskrypcja wkrótce wygaśnie."
 
 #: templates/fees/mails/subscription_reminder.txt:5
 msgid "Subscription"
-msgstr ""
+msgstr "Subskrypcja"
 
 #: templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
 msgid "Expires"
-msgstr ""
+msgstr "Wygasa"
 
 #: templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
 msgid "in"
-msgstr ""
+msgstr "w"
 
 #: templates/fees/mails/subscription_reminder.txt:8
 msgid "You can extend your subscription at following URL:"
-msgstr ""
+msgstr "Możesz przedłużyć swoją subskrypcję pod następującym adresem URL:"
 
 #: templates/fees/mails/subscription_reminder.txt:11
 #, python-format
@@ -278,22 +297,25 @@ msgid ""
 "%(site_name)s team!\n"
 "%(site_domain)s\n"
 msgstr ""
+"%(site_name)s zespół!\n"
+"%(site_domain)s\n"
 
 #: templates/fees/plan_detail.html:4 templates/fees/plan_detail.html:9
 msgid "Pricing"
-msgstr ""
+msgstr "Cennik"
 
 #: templates/fees/widgets/package.html:15
 #: templates/fees/widgets/package.html:18
 msgid "Choose"
-msgstr ""
+msgstr "Wybierz"
 
 #: urls.py:8
+#, fuzzy
 msgctxt "url"
 msgid "pricing/"
-msgstr ""
+msgstr "cennik/"
 
 #: urls.py:9
 msgctxt "url"
 msgid "plan/"
-msgstr ""
+msgstr "plan/"
