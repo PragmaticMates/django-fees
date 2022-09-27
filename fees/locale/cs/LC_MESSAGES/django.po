@@ -3,273 +3,287 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 16:05+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2022-09-28 12:18+0000\n"
+"Last-Translator: Peter Rusinak <peter.rusinak@transportly.eu>\n"
+"Language-Team: Czech <https://weblate.swida.sk/projects/django-fees/app/cs/>"
+"\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n "
 "<= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+"X-Generator: Weblate 4.9.1\n"
 
 #: admin.py:22
 msgid "Purchaser"
-msgstr ""
+msgstr "Kupující"
 
 #: admin.py:69
+#, fuzzy
 msgid "Duplicate package"
-msgstr ""
+msgstr "Duplicitní / Duplikovat balíček"
 
 #: admin.py:163
 #, python-format
 msgid "Plan %s already expired"
-msgstr ""
+msgstr "Platnost plánu %s již vypršela"
 
 #: admin.py:165
 #, python-format
 msgid "Reminder sent (%s)"
-msgstr ""
+msgstr "Upomínka odeslaná (%s)"
 
 #: admin.py:167
 msgid "Send reminder"
-msgstr ""
+msgstr "Odeslat upomínku"
 
 #: apps.py:12
 msgid "Fees"
-msgstr ""
+msgstr "Poplatky"
 
 #: mixins.py:30
 #, python-format
 msgid "Purchaser of the plan is already set: %s"
-msgstr ""
+msgstr "Kupující plánu je již nastaven: %s"
 
 #: models.py:28
 msgid "codename"
-msgstr ""
+msgstr "codename / krycí jméno / jméno kódu"
 
 #: models.py:29
+#, fuzzy
 msgid "name"
-msgstr ""
+msgstr "název / jméno"
 
 #: models.py:30
 msgid "unit"
-msgstr ""
+msgstr "jednotka"
 
 #: models.py:31 models.py:64
 msgid "description"
-msgstr ""
+msgstr "popis"
 
 #: models.py:32
+#, fuzzy
 msgid "is boolean"
-msgstr ""
+msgstr "is boolean"
 
 #: models.py:33 models.py:65
 msgid "ordering"
-msgstr ""
+msgstr "objednávání"
 
 #: models.py:33 models.py:65
 msgid "to set order in pricing"
-msgstr ""
+msgstr "nastavit objednávku v ceně"
 
 #: models.py:38
 msgid "Quota"
-msgstr ""
+msgstr "Kvóta"
 
 #: models.py:39
 msgid "Quotas"
-msgstr ""
+msgstr "Kvóty"
 
 #: models.py:57
 msgid "Package quota"
-msgstr ""
+msgstr "Kvóta balíčku"
 
 #: models.py:58
 msgid "Packages quotas"
-msgstr ""
+msgstr "Kvóty balíčků"
 
 #: models.py:63
+#, fuzzy
 msgid "title"
-msgstr ""
+msgstr "název / titul / nadpis"
 
 #: models.py:66
 msgid "trial duration"
-msgstr ""
+msgstr "zkušební doba"
 
 #: models.py:66
 msgid "in days"
-msgstr ""
+msgstr "ve dnech"
 
 #: models.py:68
 msgid "default"
-msgstr ""
+msgstr "výchozí"
 
 #: models.py:69
 msgid ""
 "Default package for new purchaser (useful for trial packages). Only 1 "
 "default package at a time can be set."
 msgstr ""
+"Výchozí balíček pro nového kupujícího (užitečné pro zkušební balíčky). "
+"Najednou lze nastavit pouze 1 výchozí balíček."
 
 #: models.py:74
 msgid "fallback"
-msgstr ""
+msgstr "záložní"
 
 #: models.py:75
 msgid ""
 "Fallback package for purchaser when its subscription expires or trial ends "
 "(useful for freemium packages). Only 1 fallback package at a time can be set."
 msgstr ""
+"Záložní balíček pro kupujícího, když jeho předplatné vyprší nebo skončí "
+"zkušební verze (užitečné pro balíčky freemium). Najednou lze nastavit pouze "
+"1 záložní balíček."
 
 #: models.py:80
 msgid "available"
-msgstr ""
+msgstr "dostupný"
 
 #: models.py:81
 msgid "Is still available for purchase"
-msgstr ""
+msgstr "Je stále k dispozici ke koupi"
 
 #: models.py:84
 msgid "visible"
-msgstr ""
+msgstr "viditelný"
 
 #: models.py:85
 msgid "Is visible in pricing page"
-msgstr ""
+msgstr "Je vidět na stránce s cenami"
 
 #: models.py:88 models.py:206
 msgid "created"
-msgstr ""
+msgstr "vytvořené"
 
 #: models.py:89 models.py:207 models.py:290
 msgid "modified"
-msgstr ""
+msgstr "upraveno"
 
 #: models.py:94 models.py:282
 msgid "package"
-msgstr ""
+msgstr "balík"
 
 #: models.py:95
 msgid "packages"
-msgstr ""
+msgstr "balíky"
 
 #: models.py:152
 msgid "Plan has expired and fallback package is not free"
-msgstr ""
+msgstr "Platnost plánu vypršela a záložní balíček není zdarma"
 
 #: models.py:154
 msgid "Plan not found and fallback package is not free"
-msgstr ""
+msgstr "Plán nebyl nalezen a záložní balíček není zdarma"
 
 #: models.py:186 models.py:191
 msgid "day"
-msgstr ""
+msgstr "den"
 
 #: models.py:187 models.py:192 templates/fees/widgets/package.html:13
 msgid "month"
-msgstr ""
+msgstr "měsíc"
 
 #: models.py:188 models.py:193
 msgid "year"
-msgstr ""
+msgstr "rok"
 
 #: models.py:191 templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
+#, fuzzy
 msgid "days"
-msgstr ""
+msgstr "dní"
 
 #: models.py:192
 msgid "months"
-msgstr ""
+msgstr "měsíce"
 
 #: models.py:193
+#, fuzzy
 msgid "years"
-msgstr ""
+msgstr "let"
 
 #: models.py:197
 msgid "period"
-msgstr ""
+msgstr "doba"
 
 #: models.py:198
 msgid "duration"
-msgstr ""
+msgstr "doba trvání"
 
 #: models.py:198
 msgid "in period"
-msgstr ""
+msgstr "v období"
 
 #: models.py:200
 msgid "price"
-msgstr ""
+msgstr "cena"
 
 #: models.py:211 models.py:283
+#, fuzzy
 msgid "pricing"
-msgstr ""
+msgstr "stanovení ceny / ceník"
 
 #: models.py:212
+#, fuzzy
 msgid "pricings"
-msgstr ""
+msgstr "stanovení cen / ceník"
 
 #: models.py:279
 msgid "purchaser"
-msgstr ""
+msgstr "kupující"
 
 #: models.py:285
 msgid "activation"
-msgstr ""
+msgstr "aktivace"
 
 #: models.py:286
 msgid "expires"
-msgstr ""
+msgstr "vyprší"
 
 #: models.py:286
 msgid "keep blank to calculate automatically by pricing period"
-msgstr ""
+msgstr "ponechte prázdné, chcete-li vypočítat automaticky podle cenového období"
 
 #: models.py:294 templates/fees/plan_detail.html:2
 msgid "Plan"
-msgstr ""
+msgstr "Plán"
 
 #: models.py:295
 msgid "Plans"
-msgstr ""
+msgstr "Plány"
 
 #: models.py:505
 msgid "Your subscription is going to expire soon"
-msgstr ""
+msgstr "Vaše předplatné brzy vyprší"
 
 #: templates/fees/mails/subscription_reminder.txt:1
 #, python-format
 msgid "Hello %(user)s!"
-msgstr ""
+msgstr "Dobrý den, %(user)s!"
 
 #: templates/fees/mails/subscription_reminder.txt:3
 msgid ""
 "We would like to inform you that your subscription is going to expire soon."
-msgstr ""
+msgstr "Rádi bychom vás informovali, že vaše předplatné brzy vyprší."
 
 #: templates/fees/mails/subscription_reminder.txt:5
 msgid "Subscription"
-msgstr ""
+msgstr "Předplatné"
 
 #: templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
 msgid "Expires"
-msgstr ""
+msgstr "Platnost vyprší"
 
 #: templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
 msgid "in"
-msgstr ""
+msgstr "v"
 
 #: templates/fees/mails/subscription_reminder.txt:8
 msgid "You can extend your subscription at following URL:"
-msgstr ""
+msgstr "Své předplatné můžete prodloužit na následující adrese URL:"
 
 #: templates/fees/mails/subscription_reminder.txt:11
 #, python-format
@@ -277,22 +291,24 @@ msgid ""
 "%(site_name)s team!\n"
 "%(site_domain)s\n"
 msgstr ""
+"%(site_name)s tým!\n"
+"%(site_domain)s\n"
 
 #: templates/fees/plan_detail.html:4 templates/fees/plan_detail.html:9
 msgid "Pricing"
-msgstr ""
+msgstr "Ceny"
 
 #: templates/fees/widgets/package.html:15
 #: templates/fees/widgets/package.html:18
 msgid "Choose"
-msgstr ""
+msgstr "Vybrat"
 
 #: urls.py:8
 msgctxt "url"
 msgid "pricing/"
-msgstr ""
+msgstr "cena/"
 
 #: urls.py:9
 msgctxt "url"
 msgid "plan/"
-msgstr ""
+msgstr "plan/"
