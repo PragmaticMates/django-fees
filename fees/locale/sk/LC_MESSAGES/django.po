@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 16:05+0200\n"
-"PO-Revision-Date: 2022-10-11 12:18+0000\n"
+"PO-Revision-Date: 2022-10-27 15:18+0000\n"
 "Last-Translator: Peter Rusinak <peter.rusinak@transportly.eu>\n"
 "Language-Team: Slovak <https://weblate.swida.sk/projects/django-fees/app/sk/>"
 "\n"
@@ -52,9 +52,8 @@ msgid "Purchaser of the plan is already set: %s"
 msgstr "Kupujúci plánu už je nastavený: %s"
 
 #: models.py:28
-#, fuzzy
 msgid "codename"
-msgstr "codename"
+msgstr "krycie meno"
 
 #: models.py:29
 msgid "name"
@@ -69,18 +68,16 @@ msgid "description"
 msgstr "popis"
 
 #: models.py:32
-#, fuzzy
 msgid "is boolean"
-msgstr "is boolean"
+msgstr "je boolean"
 
 #: models.py:33 models.py:65
 msgid "ordering"
 msgstr "objednávanie"
 
 #: models.py:33 models.py:65
-#, fuzzy
 msgid "to set order in pricing"
-msgstr "nastaviť poradie / objednávku v cene / cenníku"
+msgstr "nastaviť poradie v cenníku"
 
 #: models.py:38
 msgid "Quota"
@@ -126,7 +123,7 @@ msgstr ""
 #: models.py:74
 #, fuzzy
 msgid "fallback"
-msgstr "záložný"
+msgstr "základný balík"
 
 #: models.py:75
 msgid ""
@@ -199,9 +196,8 @@ msgid "months"
 msgstr "mesiace"
 
 #: models.py:193
-#, fuzzy
 msgid "years"
-msgstr "rokov / roky"
+msgstr "roky"
 
 #: models.py:197
 msgid "period"
@@ -225,7 +221,6 @@ msgid "pricing"
 msgstr "cenník"
 
 #: models.py:212
-#, fuzzy
 msgid "pricings"
 msgstr "cenníky"
 
