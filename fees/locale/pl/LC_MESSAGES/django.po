@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 16:05+0200\n"
-"PO-Revision-Date: 2022-09-28 12:18+0000\n"
+"PO-Revision-Date: 2022-10-27 15:18+0000\n"
 "Last-Translator: Rafal Szczepanowicz <rafal@transportly.eu>\n"
 "Language-Team: Polish <https://weblate.swida.sk/projects/django-fees/app/pl/>"
 "\n"
@@ -54,14 +54,13 @@ msgstr "Nabywca planu jest już ustawiony: %s"
 
 #: models.py:28
 msgid "codename"
-msgstr ""
+msgstr "kryptonim"
 
 #: models.py:29
 msgid "name"
 msgstr "imię"
 
 #: models.py:30
-#, fuzzy
 msgid "unit"
 msgstr "jednostka"
 
@@ -70,18 +69,16 @@ msgid "description"
 msgstr "opis"
 
 #: models.py:32
-#, fuzzy
 msgid "is boolean"
-msgstr "jest logiczne"
+msgstr "jest boolean"
 
 #: models.py:33 models.py:65
 msgid "ordering"
 msgstr "zamawianie"
 
 #: models.py:33 models.py:65
-#, fuzzy
 msgid "to set order in pricing"
-msgstr "ustawić porządek w cenniku"
+msgstr "ustawić kolejność w cenniku"
 
 #: models.py:38
 msgid "Quota"
@@ -104,9 +101,8 @@ msgid "title"
 msgstr "tytuł"
 
 #: models.py:66
-#, fuzzy
 msgid "trial duration"
-msgstr "trwanie okresu próbnego/ okres próbny"
+msgstr "okres próbny"
 
 #: models.py:66
 msgid "in days"
@@ -134,9 +130,9 @@ msgid ""
 "Fallback package for purchaser when its subscription expires or trial ends "
 "(useful for freemium packages). Only 1 fallback package at a time can be set."
 msgstr ""
-"Pakiet awaryjny dla nabywcy po wygaśnięciu subskrypcji lub zakończeniu "
+"Pakiet podstawowy dla nabywcy po wygaśnięciu subskrypcji lub zakończeniu "
 "okresu próbnego (przydatne w przypadku pakietów freemium). Jednocześnie "
-"można ustawić tylko 1 pakiet awaryjny."
+"można ustawić tylko 1 pakiet podstawowy."
 
 #: models.py:80
 msgid "available"
@@ -163,23 +159,22 @@ msgid "modified"
 msgstr "zmodyfikowany"
 
 #: models.py:94 models.py:282
-#, fuzzy
 msgid "package"
 msgstr "pakiet"
 
 #: models.py:95
-#, fuzzy
 msgid "packages"
 msgstr "pakiety"
 
 #: models.py:152
 #, fuzzy
 msgid "Plan has expired and fallback package is not free"
-msgstr "Plan wygasł, a pakiet awaryjny nie jest darmowy"
+msgstr "Plan wygasł, a pakiet podstawowy nie jest darmowy"
 
 #: models.py:154
+#, fuzzy
 msgid "Plan not found and fallback package is not free"
-msgstr ""
+msgstr "Nie znaleziono planu, a pakiet podstawowy nie jest darmowy"
 
 #: models.py:186 models.py:191
 msgid "day"
@@ -203,7 +198,6 @@ msgid "months"
 msgstr "miesiące"
 
 #: models.py:193
-#, fuzzy
 msgid "years"
 msgstr "lata"
 
@@ -212,12 +206,10 @@ msgid "period"
 msgstr "okres"
 
 #: models.py:198
-#, fuzzy
 msgid "duration"
 msgstr "trwanie"
 
 #: models.py:198
-#, fuzzy
 msgid "in period"
 msgstr "w okresie"
 
@@ -230,7 +222,6 @@ msgid "pricing"
 msgstr "cennik"
 
 #: models.py:212
-#, fuzzy
 msgid "pricings"
 msgstr "cenniki"
 
@@ -247,7 +238,6 @@ msgid "expires"
 msgstr "wygasa"
 
 #: models.py:286
-#, fuzzy
 msgid "keep blank to calculate automatically by pricing period"
 msgstr "pozostaw puste, aby obliczyć automatycznie według okresu cenowego"
 
@@ -310,7 +300,6 @@ msgid "Choose"
 msgstr "Wybierz"
 
 #: urls.py:8
-#, fuzzy
 msgctxt "url"
 msgid "pricing/"
 msgstr "cennik/"
