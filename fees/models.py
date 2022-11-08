@@ -88,7 +88,7 @@ class Package(models.Model):
     created = models.DateTimeField(_('created'), auto_now_add=True)
     modified = models.DateTimeField(_('modified'), auto_now=True)
     objects = PackageQuerySet.as_manager()
-    i18n = TranslationField(fields=('description',))
+    i18n = TranslationField(fields=('title', 'description',))
 
     class Meta:
         verbose_name = _('package')
@@ -100,7 +100,7 @@ class Package(models.Model):
         ]
 
     def __str__(self):
-        return self.title
+        return self.title_i18n
 
     def get_absolute_url(self):
         return reverse('fees:packages')
