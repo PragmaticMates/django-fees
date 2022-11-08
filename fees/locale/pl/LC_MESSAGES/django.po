@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 16:05+0200\n"
-"PO-Revision-Date: 2022-10-27 15:18+0000\n"
+"PO-Revision-Date: 2022-11-09 15:18+0000\n"
 "Last-Translator: Rafal Szczepanowicz <rafal@transportly.eu>\n"
 "Language-Team: Polish <https://weblate.swida.sk/projects/django-fees/app/pl/>"
 "\n"
@@ -81,20 +81,24 @@ msgid "to set order in pricing"
 msgstr "ustawić kolejność w cenniku"
 
 #: models.py:38
+#, fuzzy
 msgid "Quota"
-msgstr ""
+msgstr "Kwota"
 
 #: models.py:39
+#, fuzzy
 msgid "Quotas"
-msgstr ""
+msgstr "Kwoty"
 
 #: models.py:57
+#, fuzzy
 msgid "Package quota"
-msgstr ""
+msgstr "Kwota pakietu"
 
 #: models.py:58
+#, fuzzy
 msgid "Packages quotas"
-msgstr ""
+msgstr "Kwoty pakietów"
 
 #: models.py:63
 msgid "title"
@@ -106,7 +110,7 @@ msgstr "okres próbny"
 
 #: models.py:66
 msgid "in days"
-msgstr ""
+msgstr "w dniach"
 
 #: models.py:68
 msgid "default"
