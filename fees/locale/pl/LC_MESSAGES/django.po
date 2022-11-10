@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 16:05+0200\n"
-"PO-Revision-Date: 2022-11-09 15:18+0000\n"
+"PO-Revision-Date: 2022-11-11 13:18+0000\n"
 "Last-Translator: Rafal Szczepanowicz <rafal@transportly.eu>\n"
 "Language-Team: Polish <https://weblate.swida.sk/projects/django-fees/app/pl/>"
 "\n"
@@ -81,24 +81,20 @@ msgid "to set order in pricing"
 msgstr "ustawić kolejność w cenniku"
 
 #: models.py:38
-#, fuzzy
 msgid "Quota"
-msgstr "Kwota"
+msgstr "Przydział"
 
 #: models.py:39
-#, fuzzy
 msgid "Quotas"
-msgstr "Kwoty"
+msgstr "Przydziały"
 
 #: models.py:57
-#, fuzzy
 msgid "Package quota"
-msgstr "Kwota pakietu"
+msgstr "Przydział pakietu"
 
 #: models.py:58
-#, fuzzy
 msgid "Packages quotas"
-msgstr "Kwoty pakietów"
+msgstr "Przydziały pakietów"
 
 #: models.py:63
 msgid "title"
@@ -126,17 +122,16 @@ msgstr ""
 
 #: models.py:74
 msgid "fallback"
-msgstr ""
+msgstr "bazowy"
 
 #: models.py:75
-#, fuzzy
 msgid ""
 "Fallback package for purchaser when its subscription expires or trial ends "
 "(useful for freemium packages). Only 1 fallback package at a time can be set."
 msgstr ""
-"Pakiet podstawowy dla nabywcy po wygaśnięciu subskrypcji lub zakończeniu "
-"okresu próbnego (przydatne w przypadku pakietów freemium). Jednocześnie "
-"można ustawić tylko 1 pakiet podstawowy."
+"Pakiet bazowy dla nabywcy po wygaśnięciu subskrypcji lub zakończeniu okresu "
+"próbnego (przydatne w przypadku pakietów freemium). Jednocześnie można "
+"ustawić tylko 1 pakiet bazowy."
 
 #: models.py:80
 msgid "available"
@@ -171,14 +166,12 @@ msgid "packages"
 msgstr "pakiety"
 
 #: models.py:152
-#, fuzzy
 msgid "Plan has expired and fallback package is not free"
-msgstr "Plan wygasł, a pakiet podstawowy nie jest darmowy"
+msgstr "Plan wygasł, a pakiet bazowy nie jest darmowy"
 
 #: models.py:154
-#, fuzzy
 msgid "Plan not found and fallback package is not free"
-msgstr "Nie znaleziono planu, a pakiet podstawowy nie jest darmowy"
+msgstr "Nie znaleziono planu, a pakiet bazowy nie jest darmowy"
 
 #: models.py:186 models.py:191
 msgid "day"
