@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 16:05+0200\n"
-"PO-Revision-Date: 2022-10-27 15:18+0000\n"
+"PO-Revision-Date: 2022-11-11 13:18+0000\n"
 "Last-Translator: Peter Rusinak <peter.rusinak@transportly.eu>\n"
 "Language-Team: Slovak <https://weblate.swida.sk/projects/django-fees/app/sk/>"
 "\n"
@@ -104,7 +104,6 @@ msgid "trial duration"
 msgstr "trvanie skúšobnej verzie"
 
 #: models.py:66
-#, fuzzy
 msgid "in days"
 msgstr "dní"
 
@@ -121,7 +120,6 @@ msgstr ""
 "je možné nastaviť iba 1 predvolený balík."
 
 #: models.py:74
-#, fuzzy
 msgid "fallback"
 msgstr "základný balík"
 
@@ -130,9 +128,9 @@ msgid ""
 "Fallback package for purchaser when its subscription expires or trial ends "
 "(useful for freemium packages). Only 1 fallback package at a time can be set."
 msgstr ""
-"Záložný balík pre kupujúceho, keď jeho predplatné vyprší alebo skončí "
+"Základný balík pre kupujúceho, keď jeho predplatné vyprší alebo skončí "
 "skúšobná verzia (užitočné pre freemium balíky). Naraz je možné nastaviť iba "
-"1 záložný balík."
+"1 základný balík."
 
 #: models.py:80
 msgid "available"
@@ -168,11 +166,11 @@ msgstr "balíky"
 
 #: models.py:152
 msgid "Plan has expired and fallback package is not free"
-msgstr "Platnosť plánu vypršala a záložný balík nie je zadarmo"
+msgstr "Platnosť plánu vypršala a základný balík nie je zadarmo"
 
 #: models.py:154
 msgid "Plan not found and fallback package is not free"
-msgstr "Plán sa nenašiel a záložný balík nie je zadarmo"
+msgstr "Plán sa nenašiel a základný balík nie je zadarmo"
 
 #: models.py:186 models.py:191
 msgid "day"
@@ -197,7 +195,7 @@ msgstr "mesiace"
 
 #: models.py:193
 msgid "years"
-msgstr "roky"
+msgstr "rokov"
 
 #: models.py:197
 msgid "period"
@@ -208,7 +206,6 @@ msgid "duration"
 msgstr "trvanie"
 
 #: models.py:198
-#, fuzzy
 msgid "in period"
 msgstr "v období"
 
