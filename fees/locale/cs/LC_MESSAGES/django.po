@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 16:05+0200\n"
-"PO-Revision-Date: 2022-09-28 12:18+0000\n"
+"PO-Revision-Date: 2022-11-11 13:18+0000\n"
 "Last-Translator: Peter Rusinak <peter.rusinak@transportly.eu>\n"
 "Language-Team: Czech <https://weblate.swida.sk/projects/django-fees/app/cs/>"
 "\n"
@@ -25,9 +25,8 @@ msgid "Purchaser"
 msgstr "Kupující"
 
 #: admin.py:69
-#, fuzzy
 msgid "Duplicate package"
-msgstr "Duplicitní / Duplikovat balíček"
+msgstr "Duplikovat balíček"
 
 #: admin.py:163
 #, python-format
@@ -57,9 +56,8 @@ msgid "codename"
 msgstr "codename / krycí jméno / jméno kódu"
 
 #: models.py:29
-#, fuzzy
 msgid "name"
-msgstr "název / jméno"
+msgstr "název"
 
 #: models.py:30
 msgid "unit"
@@ -70,9 +68,8 @@ msgid "description"
 msgstr "popis"
 
 #: models.py:32
-#, fuzzy
 msgid "is boolean"
-msgstr "is boolean"
+msgstr "je boolean"
 
 #: models.py:33 models.py:65
 msgid "ordering"
@@ -99,9 +96,8 @@ msgid "Packages quotas"
 msgstr "Kvóty balíčků"
 
 #: models.py:63
-#, fuzzy
 msgid "title"
-msgstr "název / titul / nadpis"
+msgstr "název"
 
 #: models.py:66
 msgid "trial duration"
@@ -125,16 +121,16 @@ msgstr ""
 
 #: models.py:74
 msgid "fallback"
-msgstr "záložní"
+msgstr "základní"
 
 #: models.py:75
 msgid ""
 "Fallback package for purchaser when its subscription expires or trial ends "
 "(useful for freemium packages). Only 1 fallback package at a time can be set."
 msgstr ""
-"Záložní balíček pro kupujícího, když jeho předplatné vyprší nebo skončí "
+"Základní balíček pro kupujícího, když jeho předplatné vyprší nebo skončí "
 "zkušební verze (užitečné pro balíčky freemium). Najednou lze nastavit pouze "
-"1 záložní balíček."
+"1 základní balíček."
 
 #: models.py:80
 msgid "available"
@@ -170,11 +166,11 @@ msgstr "balíky"
 
 #: models.py:152
 msgid "Plan has expired and fallback package is not free"
-msgstr "Platnost plánu vypršela a záložní balíček není zdarma"
+msgstr "Platnost plánu vypršela a základní balíček není zdarma"
 
 #: models.py:154
 msgid "Plan not found and fallback package is not free"
-msgstr "Plán nebyl nalezen a záložní balíček není zdarma"
+msgstr "Plán nebyl nalezen a základní balíček není zdarma"
 
 #: models.py:186 models.py:191
 msgid "day"
@@ -190,7 +186,6 @@ msgstr "rok"
 
 #: models.py:191 templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
-#, fuzzy
 msgid "days"
 msgstr "dní"
 
@@ -199,7 +194,6 @@ msgid "months"
 msgstr "měsíce"
 
 #: models.py:193
-#, fuzzy
 msgid "years"
 msgstr "let"
 
@@ -220,14 +214,12 @@ msgid "price"
 msgstr "cena"
 
 #: models.py:211 models.py:283
-#, fuzzy
 msgid "pricing"
-msgstr "stanovení ceny / ceník"
+msgstr "ceník"
 
 #: models.py:212
-#, fuzzy
 msgid "pricings"
-msgstr "stanovení cen / ceník"
+msgstr "ceník"
 
 #: models.py:279
 msgid "purchaser"
