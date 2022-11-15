@@ -33,7 +33,7 @@ class PricingInline(admin.TabularInline):
 
 class QuotaAdmin(admin.ModelAdmin):
     list_display = [
-        'codename', 'name', 'description', 'unit',
+        'codename', 'name_i18n', 'description_i18n', 'unit',
         'is_boolean', 'order'
         #'move_up_down_links',
     ]
@@ -71,11 +71,11 @@ copy_package.short_description = _('Duplicate package')
 
 @admin.register(Package)
 class PackageAdmin(admin.ModelAdmin):
-    search_fields = ('title',
+    search_fields = ('title_i18n',
                      # 'customized__username', 'customized__email',
                      )
     list_display = [
-        'title',
+        'title_i18n',
         # 'description',
         # 'customized',
         'trial_duration',
