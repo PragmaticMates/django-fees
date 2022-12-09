@@ -3,272 +3,279 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-11-24 21:11+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2022-12-10 15:18+0000\n"
+"Last-Translator: Krisztina Mathe <krisztina.mathe@transportly.eu>\n"
+"Language-Team: Hungarian <https://weblate.swida.sk/projects/django-fees/app/"
+"hu/>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.9.1\n"
 
 #: admin.py:22
 msgid "Purchaser"
-msgstr ""
+msgstr "Vásárló"
 
 #: admin.py:69
 msgid "Duplicate package"
-msgstr ""
+msgstr "Csomag duplázása"
 
 #: admin.py:163
 #, python-format
 msgid "Plan %s already expired"
-msgstr ""
+msgstr "%s előfizetés lejárt"
 
 #: admin.py:165
 #, python-format
 msgid "Reminder sent (%s)"
-msgstr ""
+msgstr "Emlékeztető elküldve (%s)"
 
 #: admin.py:167
 msgid "Send reminder"
-msgstr ""
+msgstr "Emlékeztető küldése"
 
 #: apps.py:12
 msgid "Fees"
-msgstr ""
+msgstr "Költségek"
 
 #: mixins.py:30
 #, python-format
 msgid "Purchaser of the plan is already set: %s"
-msgstr ""
+msgstr "Az előfizető vásárlója be van állítva: %s"
 
 #: models.py:28
 msgid "codename"
-msgstr ""
+msgstr "kód neve"
 
 #: models.py:29
 msgid "name"
-msgstr ""
+msgstr "név"
 
 #: models.py:30
 msgid "unit"
-msgstr ""
+msgstr "egység"
 
 #: models.py:31 models.py:64
 msgid "description"
-msgstr ""
+msgstr "leírás"
 
 #: models.py:32
 msgid "is boolean"
-msgstr ""
+msgstr "boolean érték"
 
 #: models.py:33 models.py:65
 msgid "ordering"
-msgstr ""
+msgstr "megrendelés"
 
 #: models.py:33 models.py:65
 msgid "to set order in pricing"
-msgstr ""
+msgstr "az árazás sorrendjének beállítása"
 
 #: models.py:38
 msgid "Quota"
-msgstr ""
+msgstr "Kvóta"
 
 #: models.py:39
 msgid "Quotas"
-msgstr ""
+msgstr "Kvóták"
 
 #: models.py:57
 msgid "Package quota"
-msgstr ""
+msgstr "Csomag kvótája"
 
 #: models.py:58
 msgid "Packages quotas"
-msgstr ""
+msgstr "Csomag kvótái"
 
 #: models.py:63
 msgid "title"
-msgstr ""
+msgstr "cím"
 
 #: models.py:66
 msgid "trial duration"
-msgstr ""
+msgstr "próba időtartama"
 
 #: models.py:66
 msgid "in days"
-msgstr ""
+msgstr "a napokban"
 
 #: models.py:68
 msgid "default"
-msgstr ""
+msgstr "alapértelmezett"
 
 #: models.py:69
 msgid ""
 "Default package for new purchaser (useful for trial packages). Only 1 "
 "default package at a time can be set."
 msgstr ""
+"Alapértelmezett csomag az új vásárló részére (hasznos a próbacsomagokhoz). "
+"Egyszerre csak egy alapértelmezett csomag állítható be."
 
 #: models.py:74
 msgid "fallback"
-msgstr ""
+msgstr "tartalék"
 
 #: models.py:75
 msgid ""
 "Fallback package for purchaser when its subscription expires or trial ends "
 "(useful for freemium packages). Only 1 fallback package at a time can be set."
 msgstr ""
+"Tartalékcsomag a vásárló részére abban az esetben, ha az előfizetés lejár ("
+"hasznos a freemium csomagokhoz). Egyszerre csak egy tartalékcsomag "
+"választható."
 
 #: models.py:80
 msgid "available"
-msgstr ""
+msgstr "elérhető"
 
 #: models.py:81
 msgid "Is still available for purchase"
-msgstr ""
+msgstr "Még mindig megvásárolható"
 
 #: models.py:84
 msgid "visible"
-msgstr ""
+msgstr "látható"
 
 #: models.py:85
 msgid "Is visible in pricing page"
-msgstr ""
+msgstr "Látható az árazási listán"
 
 #: models.py:88 models.py:206
 msgid "created"
-msgstr ""
+msgstr "létrehozva"
 
 #: models.py:89 models.py:207 models.py:290
 msgid "modified"
-msgstr ""
+msgstr "módosítva"
 
 #: models.py:94 models.py:282
 msgid "package"
-msgstr ""
+msgstr "csomag"
 
 #: models.py:95
 msgid "packages"
-msgstr ""
+msgstr "csomagok"
 
 #: models.py:152
 msgid "Plan has expired and fallback package is not free"
-msgstr ""
+msgstr "Az előfizetés lejárt és a tartalék csomag nem ingyenes"
 
 #: models.py:154
 msgid "Plan not found and fallback package is not free"
-msgstr ""
+msgstr "Az előfizetés nem található és a tartalék csomag nem ingyenes"
 
 #: models.py:186 models.py:191
 msgid "day"
-msgstr ""
+msgstr "nap"
 
 #: models.py:187 models.py:192 templates/fees/widgets/package.html:13
 msgid "month"
-msgstr ""
+msgstr "hónap"
 
 #: models.py:188 models.py:193
 msgid "year"
-msgstr ""
+msgstr "év"
 
 #: models.py:191 templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
 msgid "days"
-msgstr ""
+msgstr "napok"
 
 #: models.py:192
 msgid "months"
-msgstr ""
+msgstr "hónapok"
 
 #: models.py:193
 msgid "years"
-msgstr ""
+msgstr "évek"
 
 #: models.py:197
 msgid "period"
-msgstr ""
+msgstr "periódus"
 
 #: models.py:198
 msgid "duration"
-msgstr ""
+msgstr "időtartam"
 
 #: models.py:198
 msgid "in period"
-msgstr ""
+msgstr "periódusban"
 
 #: models.py:200
 msgid "price"
-msgstr ""
+msgstr "ár"
 
 #: models.py:211 models.py:283
 msgid "pricing"
-msgstr ""
+msgstr "árazás"
 
 #: models.py:212
 msgid "pricings"
-msgstr ""
+msgstr "árazások"
 
 #: models.py:279
 msgid "purchaser"
-msgstr ""
+msgstr "vásárló"
 
 #: models.py:285
 msgid "activation"
-msgstr ""
+msgstr "aktiválás"
 
 #: models.py:286
 msgid "expires"
-msgstr ""
+msgstr "lejár"
 
 #: models.py:286
 msgid "keep blank to calculate automatically by pricing period"
 msgstr ""
+"hagyja üresen, hogy automatikusan kiszámolja a kifizetési periódus alapján"
 
 #: models.py:294 templates/fees/plan_detail.html:2
 msgid "Plan"
-msgstr ""
+msgstr "Előfizetés"
 
 #: models.py:295
 msgid "Plans"
-msgstr ""
+msgstr "Előfizetések"
 
 #: models.py:505
 msgid "Your subscription is going to expire soon"
-msgstr ""
+msgstr "Az előfizetése hamarosan lejár"
 
 #: templates/fees/mails/subscription_reminder.txt:1
 #, python-format
 msgid "Hello %(user)s!"
-msgstr ""
+msgstr "Helló %(user)s!"
 
 #: templates/fees/mails/subscription_reminder.txt:3
 msgid ""
 "We would like to inform you that your subscription is going to expire soon."
-msgstr ""
+msgstr "Szeretnénk emlékeztetni, hogy az előfizetése hamarosan lejár."
 
 #: templates/fees/mails/subscription_reminder.txt:5
 msgid "Subscription"
-msgstr ""
+msgstr "Előfizetés"
 
 #: templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
 msgid "Expires"
-msgstr ""
+msgstr "Lejár"
 
 #: templates/fees/mails/subscription_reminder.txt:6
 #: templates/fees/plan_detail.html:7
 msgid "in"
-msgstr ""
+msgstr "benne"
 
 #: templates/fees/mails/subscription_reminder.txt:8
 msgid "You can extend your subscription at following URL:"
-msgstr ""
+msgstr "Meghosszabbíthatja az előfizetését az alábbi URL-re kattintva:"
 
 #: templates/fees/mails/subscription_reminder.txt:11
 #, python-format
@@ -276,22 +283,24 @@ msgid ""
 "%(site_name)s team!\n"
 "%(site_domain)s\n"
 msgstr ""
+"%(site_name)s csapat!\n"
+"%(site_domain)s\n"
 
 #: templates/fees/plan_detail.html:4 templates/fees/plan_detail.html:9
 msgid "Pricing"
-msgstr ""
+msgstr "Árazás"
 
 #: templates/fees/widgets/package.html:15
 #: templates/fees/widgets/package.html:18
 msgid "Choose"
-msgstr ""
+msgstr "Válasszon"
 
 #: urls.py:8
 msgctxt "url"
 msgid "pricing/"
-msgstr ""
+msgstr "arazas/"
 
 #: urls.py:9
 msgctxt "url"
 msgid "plan/"
-msgstr ""
+msgstr "elofizetes/"
