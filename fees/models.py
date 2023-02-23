@@ -173,7 +173,7 @@ class Package(models.Model):
     is_free.boolean = True
 
     def monthly_plan(self):
-        return self.pricing_set.get(period=Pricing.PERIOD_MONTH)
+        return self.pricing_set.filter(period=Pricing.PERIOD_MONTH).order_by('duration').first()
 
     is_free.boolean = True
 
@@ -211,7 +211,25 @@ class Pricing(models.Model):
         verbose_name = _('pricing')
         verbose_name_plural = _('pricings')
         ordering = ['price']
-        unique_together = (['package', 'period'],)
+        unique_together = (['package', 'period', 'duration'],)
+
+    @classmethod
+    def distinct_period_durations(cls):
+        period_durations = cls.objects.order_by('period', 'duration').values('period', 'duration').distinct()
+
+        for period_duration in period_durations:
+            period_duration['display'] = Pricing.period_duration_display(
+                period=period_duration['period'],
+                duration=period_duration['duration']
+            )
+
+        return period_durations
+
+    @staticmethod
+    def period_duration_display(period, duration):
+        period_localize = dict(Pricing.PERIODS_PLURALIZE).get(period)
+        period_display = period_localize[0] if duration == 1 else period_localize[1]  # TODO: i18n
+        return f'{duration} {period_display}'
 
     def __str__(self):
         return f'{self.package} ({self.get_duration_display()})'
@@ -220,9 +238,7 @@ class Pricing(models.Model):
         return reverse('fees:pricing')
 
     def get_duration_display(self):
-        period_localize = dict(self.PERIODS_PLURALIZE).get(self.period)
-        period_display = period_localize[0] if self.duration == 1 else period_localize[1]  # TODO: i18n
-        return f'{self.duration} {period_display}'
+        return Pricing.period_duration_display(self.period, self.duration)
 
     def get_price_display(self):
         return f'{self.price} {fees_settings.CURRENCY}'
