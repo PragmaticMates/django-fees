@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core.validators import MinValueValidator, EMPTY_VALUES
 from django.urls import reverse
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _, override as override_language
+from django.utils.translation import ugettext_lazy as _, override as override_language, ngettext
 from modeltrans.fields import TranslationField
 
 from pragmatic.managers import EmailManager
@@ -227,9 +227,28 @@ class Pricing(models.Model):
 
     @staticmethod
     def period_duration_display(period, duration):
-        period_localize = dict(Pricing.PERIODS_PLURALIZE).get(period)
-        period_display = period_localize[0] if duration == 1 else period_localize[1]  # TODO: i18n
-        return f'{duration} {period_display}'
+        if period == Pricing.PERIOD_DAY:
+            return ngettext(
+                '%(duration)d day',
+                '%(duration)d days',
+                duration,
+            ) % {'duration': duration, }
+        elif period == Pricing.PERIOD_MONTH:
+            return ngettext(
+                '%(duration)d month',
+                '%(duration)d months',
+                duration,
+            ) % {'duration': duration, }
+        elif period == Pricing.PERIOD_YEAR:
+            return ngettext(
+                '%(duration)d year',
+                '%(duration)d years',
+                duration,
+            ) % {'duration': duration, }
+        else:
+            period_localize = dict(Pricing.PERIODS_PLURALIZE).get(period)
+            period_display = period_localize[0] if duration == 1 else period_localize[1]
+            return f'{duration} {period_display}'
 
     def __str__(self):
         return f'{self.package} ({self.get_duration_display()})'
