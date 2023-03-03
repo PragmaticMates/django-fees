@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-03 13:59+0100\n"
-"PO-Revision-Date: 2022-12-12 20:30+0000\n"
-"Last-Translator: Radovan Šoltys <radovan.soltys@swida.sk>\n"
+"PO-Revision-Date: 2023-03-03 15:08+0000\n"
+"Last-Translator: Krisztina Mathe <krisztina.mathe@transportly.eu>\n"
 "Language-Team: Romanian <https://weblate.swida.sk/projects/django-fees/app/"
 "ro/>\n"
 "Language: ro\n"
@@ -222,31 +222,28 @@ msgid "pricings"
 msgstr "prețuri"
 
 #: models.py:232
-#, fuzzy, python-format
-#| msgid "duration"
+#, python-format
 msgid "%(duration)d day"
 msgid_plural "%(duration)d days"
-msgstr[0] "durata"
-msgstr[1] "durata"
-msgstr[2] "durata"
+msgstr[0] "%(duration)d zi"
+msgstr[1] "%(duration)d zile"
+msgstr[2] "%(duration)d zile"
 
 #: models.py:238
-#, fuzzy, python-format
-#| msgid "duration"
+#, python-format
 msgid "%(duration)d month"
 msgid_plural "%(duration)d months"
-msgstr[0] "durata"
-msgstr[1] "durata"
-msgstr[2] "durata"
+msgstr[0] "%(duration)d lună"
+msgstr[1] "%(duration)d luni"
+msgstr[2] "%(duration)d luni"
 
 #: models.py:244
-#, fuzzy, python-format
-#| msgid "duration"
+#, python-format
 msgid "%(duration)d year"
 msgid_plural "%(duration)d years"
-msgstr[0] "durata"
-msgstr[1] "durata"
-msgstr[2] "durata"
+msgstr[0] "%(duration)d an"
+msgstr[1] "%(duration)d ani"
+msgstr[2] "%(duration)d ani"
 
 #: models.py:314
 msgid "purchaser"
