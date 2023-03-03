@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-12 21:21+0100\n"
+"POT-Creation-Date: 2023-03-03 13:59+0100\n"
 "PO-Revision-Date: 2022-11-11 13:18+0000\n"
 "Last-Translator: Peter Rusinak <peter.rusinak@transportly.eu>\n"
 "Language-Team: Slovak <https://weblate.swida.sk/projects/django-fees/app/sk/"
@@ -152,11 +152,11 @@ msgstr "Je viditeľný na stránke s cenami"
 msgid "created"
 msgstr "vytvorené"
 
-#: models.py:89 models.py:207 models.py:290
+#: models.py:89 models.py:207 models.py:325
 msgid "modified"
 msgstr "upravené"
 
-#: models.py:94 models.py:282
+#: models.py:94 models.py:317
 msgid "package"
 msgstr "balík"
 
@@ -213,7 +213,7 @@ msgstr "v období"
 msgid "price"
 msgstr "cena"
 
-#: models.py:211 models.py:283
+#: models.py:211 models.py:318
 msgid "pricing"
 msgstr "cenník"
 
@@ -221,31 +221,61 @@ msgstr "cenník"
 msgid "pricings"
 msgstr "cenníky"
 
-#: models.py:279
+#: models.py:232
+#, fuzzy, python-format
+#| msgid "duration"
+msgid "%(duration)d day"
+msgid_plural "%(duration)d days"
+msgstr[0] "trvanie"
+msgstr[1] "trvanie"
+msgstr[2] "trvanie"
+msgstr[3] "trvanie"
+
+#: models.py:238
+#, fuzzy, python-format
+#| msgid "duration"
+msgid "%(duration)d month"
+msgid_plural "%(duration)d months"
+msgstr[0] "trvanie"
+msgstr[1] "trvanie"
+msgstr[2] "trvanie"
+msgstr[3] "trvanie"
+
+#: models.py:244
+#, fuzzy, python-format
+#| msgid "duration"
+msgid "%(duration)d year"
+msgid_plural "%(duration)d years"
+msgstr[0] "trvanie"
+msgstr[1] "trvanie"
+msgstr[2] "trvanie"
+msgstr[3] "trvanie"
+
+#: models.py:314
 msgid "purchaser"
 msgstr "kupujúci"
 
-#: models.py:285
+#: models.py:320
 msgid "activation"
 msgstr "aktivácia"
 
-#: models.py:286
+#: models.py:321
 msgid "expires"
 msgstr "vyprší"
 
-#: models.py:286
+#: models.py:321
 msgid "keep blank to calculate automatically by pricing period"
 msgstr "ponechajte prázdne pre automatický výpočet podľa cenového obdobia"
 
-#: models.py:294 templates/fees/plan_detail.html:2
+#: models.py:329 templates/fees/plan_detail.html:2
 msgid "Plan"
 msgstr "Plán"
 
-#: models.py:295
+#: models.py:330
 msgid "Plans"
 msgstr "Plány"
 
-#: models.py:505
+#: models.py:540
 msgid "Your subscription is going to expire soon"
 msgstr "Platnosť vášho predplatného čoskoro vyprší"
 
