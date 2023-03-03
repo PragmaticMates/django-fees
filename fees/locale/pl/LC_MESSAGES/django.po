@@ -8,17 +8,17 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-03 13:59+0100\n"
-"PO-Revision-Date: 2022-11-11 13:18+0000\n"
+"PO-Revision-Date: 2023-03-03 15:08+0000\n"
 "Last-Translator: Rafal Szczepanowicz <rafal@transportly.eu>\n"
-"Language-Team: Polish <https://weblate.swida.sk/projects/django-fees/app/pl/"
-">\n"
+"Language-Team: Polish <https://weblate.swida.sk/projects/django-fees/app/pl/>"
+"\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
-"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
-"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 "X-Generator: Weblate 4.9.1\n"
 
 #: admin.py:22
@@ -223,34 +223,31 @@ msgid "pricings"
 msgstr "cenniki"
 
 #: models.py:232
-#, fuzzy, python-format
-#| msgid "duration"
+#, python-format
 msgid "%(duration)d day"
 msgid_plural "%(duration)d days"
-msgstr[0] "trwanie"
-msgstr[1] "trwanie"
-msgstr[2] "trwanie"
-msgstr[3] "trwanie"
+msgstr[0] "%(duration)d dzień"
+msgstr[1] "%(duration)d dni"
+msgstr[2] "%(duration)d dni"
+msgstr[3] "%(duration)d dni"
 
 #: models.py:238
-#, fuzzy, python-format
-#| msgid "duration"
+#, python-format
 msgid "%(duration)d month"
 msgid_plural "%(duration)d months"
-msgstr[0] "trwanie"
-msgstr[1] "trwanie"
-msgstr[2] "trwanie"
-msgstr[3] "trwanie"
+msgstr[0] "%(duration)d miesiąc"
+msgstr[1] "%(duration)d miesiące"
+msgstr[2] "%(duration)d miesięcy"
+msgstr[3] "%(duration)d miesiące"
 
 #: models.py:244
-#, fuzzy, python-format
-#| msgid "duration"
+#, python-format
 msgid "%(duration)d year"
 msgid_plural "%(duration)d years"
-msgstr[0] "trwanie"
-msgstr[1] "trwanie"
-msgstr[2] "trwanie"
-msgstr[3] "trwanie"
+msgstr[0] "%(duration)d rok"
+msgstr[1] "%(duration)d lata"
+msgstr[2] "%(duration)d lat"
+msgstr[3] "%(duration)d lat"
 
 #: models.py:314
 msgid "purchaser"
