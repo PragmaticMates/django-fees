@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-03 13:59+0100\n"
-"PO-Revision-Date: 2022-12-10 15:18+0000\n"
+"PO-Revision-Date: 2023-03-03 15:08+0000\n"
 "Last-Translator: Krisztina Mathe <krisztina.mathe@transportly.eu>\n"
 "Language-Team: Hungarian <https://weblate.swida.sk/projects/django-fees/app/"
 "hu/>\n"
@@ -221,28 +221,25 @@ msgid "pricings"
 msgstr "árazások"
 
 #: models.py:232
-#, fuzzy, python-format
-#| msgid "duration"
+#, python-format
 msgid "%(duration)d day"
 msgid_plural "%(duration)d days"
-msgstr[0] "időtartam"
-msgstr[1] "időtartam"
+msgstr[0] "%(duration)d nap"
+msgstr[1] "%(duration)d nap"
 
 #: models.py:238
-#, fuzzy, python-format
-#| msgid "duration"
+#, python-format
 msgid "%(duration)d month"
 msgid_plural "%(duration)d months"
-msgstr[0] "időtartam"
-msgstr[1] "időtartam"
+msgstr[0] "%(duration)d hónap"
+msgstr[1] "%(duration)d hónap"
 
 #: models.py:244
-#, fuzzy, python-format
-#| msgid "duration"
+#, python-format
 msgid "%(duration)d year"
 msgid_plural "%(duration)d years"
-msgstr[0] "időtartam"
-msgstr[1] "időtartam"
+msgstr[0] "%(duration)d év"
+msgstr[1] "%(duration)d év"
 
 #: models.py:314
 msgid "purchaser"
