@@ -4,11 +4,17 @@ from django.contrib import admin, messages
 from django.contrib.admin.options import csrf_protect_m
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.utils.translation import ugettext_lazy as _
 from django.utils.html import format_html
 
 from fees.helpers import get_purchaser_model
 from fees.models import Plan, Package, PackageQuota, Quota, Pricing
+
+try:
+    # older Django
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    # Django >= 3
+    from django.utils.translation import gettext_lazy as _
 
 
 class PurchaserLinkMixin(object):

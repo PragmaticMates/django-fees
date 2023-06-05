@@ -1,10 +1,16 @@
 import django_rq
 from django.apps import AppConfig
 from django.conf import settings
-from django.utils.translation import ugettext_lazy as _
 
 from fees import settings as fees_settings
 from fees.cron import send_subscription_reminders
+
+try:
+    # older Django
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    # Django >= 3
+    from django.utils.translation import gettext_lazy as _
 
 
 class Config(AppConfig):

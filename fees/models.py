@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core.validators import MinValueValidator, EMPTY_VALUES
 from django.urls import reverse
 from django.utils.timezone import now
-from django.utils.translation import ugettext_lazy as _, override as override_language, ngettext
+from django.utils.translation import override as override_language, ngettext
 from modeltrans.fields import TranslationField
 
 from pragmatic.managers import EmailManager
@@ -17,6 +17,13 @@ from pragmatic.managers import EmailManager
 from fees.querysets import PackageQuerySet, PlanQuerySet
 from fees import settings as fees_settings
 from .helpers import get_purchaser_model
+
+try:
+    # older Django
+    from django.utils.translation import ugettext_lazy as _
+except ImportError:
+    # Django >= 3
+    from django.utils.translation import gettext_lazy as _
 
 logger = logging.getLogger('fees')
 
