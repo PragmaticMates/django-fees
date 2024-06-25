@@ -3,6 +3,8 @@
 from django.db import migrations, models
 import django.db.models.deletion
 
+from fees import settings as fees_settings
+
 
 class Migration(migrations.Migration):
 
@@ -18,6 +20,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='plan',
             name='purchaser',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='provisioning.workspace', verbose_name='purchaser'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=fees_settings.PURCHASER_MODEL, verbose_name='purchaser'),
         ),
     ]

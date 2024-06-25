@@ -55,7 +55,7 @@ class PackageQuotaManager(models.Manager):
 
 
 class PackageQuota(models.Model):
-    package = models.ForeignKey('Package', on_delete=models.CASCADE)
+    package = models.ForeignKey(fees_settings.PACKAGE_MODEL, on_delete=models.CASCADE)
     quota = models.ForeignKey('Quota', on_delete=models.CASCADE)
     value = models.IntegerField(default=1, null=True, blank=True)
     objects = PackageQuotaManager()
@@ -66,7 +66,7 @@ class PackageQuota(models.Model):
         unique_together = (('package', 'quota'),)
 
 
-class Package(models.Model):
+class AbstractPackage(models.Model):
     title = models.CharField(_('title'), unique=True, max_length=50)
     description = models.TextField(_('description'), blank=True)
     order = models.PositiveSmallIntegerField(verbose_name=_('ordering'), help_text=_('to set order in pricing'), unique=True, default=1)
@@ -98,6 +98,7 @@ class Package(models.Model):
     i18n = TranslationField(fields=('title', 'description',))
 
     class Meta:
+        abstract = True
         verbose_name = _('package')
         verbose_name_plural = _('packages')
         ordering = ['order']
@@ -185,6 +186,11 @@ class Package(models.Model):
     is_free.boolean = True
 
 
+class Package(AbstractPackage):
+    class Meta(AbstractPackage.Meta):
+        swappable = "FEES_PACKAGE_MODEL"
+
+
 class Pricing(models.Model):
     PERIOD_DAY = 'DAY'
     PERIOD_MONTH = 'MONTH'
@@ -200,7 +206,7 @@ class Pricing(models.Model):
         (PERIOD_YEAR, (_('year'), _('years'))),
     ]
 
-    package = models.ForeignKey(Package, on_delete=models.CASCADE)
+    package = models.ForeignKey(fees_settings.PACKAGE_MODEL, on_delete=models.CASCADE)
     period = models.CharField(_('period'), choices=PERIODS, max_length=5)
     duration = models.PositiveSmallIntegerField(verbose_name=_('duration'), help_text=_('in period'),
                                            blank=True, null=True, default=None)
@@ -321,7 +327,7 @@ class Plan(models.Model):
         get_purchaser_model(), verbose_name=_('purchaser'),
         on_delete=models.CASCADE,
     )
-    package = models.ForeignKey(Package, verbose_name=_('package'), on_delete=models.CASCADE)
+    package = models.ForeignKey(fees_settings.PACKAGE_MODEL, verbose_name=_('package'), on_delete=models.CASCADE)
     pricing = models.ForeignKey(Pricing, help_text=_('pricing'), default=None,
                                 null=True, blank=True, on_delete=models.CASCADE)
     activation = models.DateField(_('activation'), auto_now_add=True)

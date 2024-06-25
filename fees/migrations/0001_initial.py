@@ -14,6 +14,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(fees_settings.PURCHASER_MODEL),
+        migrations.swappable_dependency(fees_settings.PACKAGE_MODEL),
     ]
 
     for dependency in fees_settings.MIGRATION_DEPENDENCIES:
@@ -34,6 +35,7 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(auto_now=True, verbose_name='modified')),
             ],
             options={
+                'swappable': 'FEES_PACKAGE_MODEL',
                 'verbose_name': 'package',
                 'verbose_name_plural': 'packages',
                 'ordering': ['order'],
@@ -65,7 +67,7 @@ class Migration(migrations.Migration):
                 ('price', models.DecimalField(db_index=True, decimal_places=2, help_text='EUR', max_digits=10, validators=[django.core.validators.MinValueValidator(0.01)], verbose_name='price')),
                 ('created', models.DateTimeField(auto_now_add=True, verbose_name='created')),
                 ('modified', models.DateTimeField(auto_now=True, verbose_name='modified')),
-                ('package', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fees.package')),
+                ('package', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=fees_settings.PACKAGE_MODEL)),
             ],
             options={
                 'verbose_name': 'pricing',
@@ -79,7 +81,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('expiration', models.DateField(blank=True, db_index=True, default=None, null=True, verbose_name='expires')),
                 ('modified', models.DateTimeField(auto_now=True, verbose_name='modified')),
-                ('package', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fees.package', verbose_name='package')),
+                ('package', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=fees_settings.PACKAGE_MODEL, verbose_name='package')),
                 ('pricing', models.ForeignKey(blank=True, default=None, help_text='pricing', null=True, on_delete=django.db.models.deletion.CASCADE, to='fees.pricing')),
                 ('purchaser', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='plan', related_query_name='plan', to=fees_settings.PURCHASER_MODEL, verbose_name='purchaser')),
             ],
@@ -93,7 +95,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('value', models.IntegerField(blank=True, default=1, null=True)),
-                ('package', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fees.package')),
+                ('package', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=fees_settings.PACKAGE_MODEL)),
                 ('quota', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='fees.quota')),
             ],
             options={

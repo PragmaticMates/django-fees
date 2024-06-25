@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.html import format_html
 
+from modeltrans.admin import ActiveLanguageMixin
+
 from fees.helpers import get_purchaser_model
 from fees.models import Plan, Package, PackageQuota, Quota, Pricing
 
@@ -76,7 +78,7 @@ copy_package.short_description = _('Duplicate package')
 
 
 @admin.register(Package)
-class PackageAdmin(admin.ModelAdmin):
+class PackageAdmin(ActiveLanguageMixin, admin.ModelAdmin):
     search_fields = ('title_i18n',
                      # 'customized__username', 'customized__email',
                      )
