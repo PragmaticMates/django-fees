@@ -1,7 +1,3 @@
-from django.apps import apps as django_apps
-
-from fees import settings as fees_settings
-
 VERSION = '0.2.1'
 
 
@@ -9,6 +5,9 @@ def get_package_model():
     """
     Return the Package model that is active in this project.
     """
+    from django.apps import apps as django_apps
+    from fees import settings as fees_settings
+
     try:
         return django_apps.get_model(fees_settings.PACKAGE_MODEL, require_ready=False)
     except ValueError:
