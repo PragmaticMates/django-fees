@@ -16,6 +16,7 @@ from pragmatic.managers import EmailManager
 
 from fees.querysets import PackageQuerySet, PlanQuerySet
 from fees import settings as fees_settings
+from fees import get_package_model
 from .helpers import get_purchaser_model
 
 try:
@@ -152,7 +153,7 @@ class AbstractPackage(models.Model):
             return purchaser.plan.package
 
         # fallback package
-        fallback_package = Package.get_fallback_package()
+        fallback_package = get_package_model().get_fallback_package()
 
         # validation of fallback package price (fallback package can't be free)
         if fallback_package is not None and not fallback_package.is_free():
@@ -167,7 +168,7 @@ class AbstractPackage(models.Model):
     def get_quotas(self):
         quota_dic = {}
         for package_quota in PackageQuota.objects.filter(package=self).select_related('quota'):
-            if Package.is_quota_available(package_quota):
+            if get_package_model().is_quota_available(package_quota):
                 quota_dic[package_quota.quota.codename] = package_quota.value
         return quota_dic
 
@@ -569,7 +570,7 @@ class Plan(models.Model):
             package = pricing.package
             expiration = now() + pricing.timedelta
         else:
-            package = Package.get_default_package()
+            package = get_package_model().get_default_package()
 
             # check if default package is available
             if not package:

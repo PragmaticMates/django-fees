@@ -8,6 +8,9 @@ except ImportError:
     # Django >= 3
     from django.utils.translation import gettext_lazy as _
 
+from fees import get_package_model
+from fees import settings as fees_settings
+
 
 class PurchaserMixin(object):
     created_attribute = 'created'
@@ -18,8 +21,7 @@ class PurchaserMixin(object):
 
     @property
     def package(self):
-        from fees.models import Package
-        return Package.get_current_package(self)
+        return get_package_model().get_current_package(self)
 
     @property
     def plan(self):
