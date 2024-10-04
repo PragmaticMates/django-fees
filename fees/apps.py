@@ -1,6 +1,7 @@
 import django_rq
 from django.apps import AppConfig
 from django.conf import settings
+from django.core.exceptions import ImproperlyConfigured
 
 from fees import settings as fees_settings
 from fees.cron import send_subscription_reminders
@@ -28,3 +29,14 @@ class Config(AppConfig):
                 func=send_subscription_reminders,
                 timeout=settings.RQ_QUEUES['cron']['DEFAULT_TIMEOUT']
             )
+
+    def ready(self):
+        from fees.models import Package
+
+        if not fees_settings.MULTIPLE_PLANS:
+            default_packages = Package.objects.filter(is_default=True)
+
+            if default_packages.count() > 1:
+                raise ImproperlyConfigured(
+                    "FEES_MULTIPLE_PLANS is configured to use one default package only"
+                )

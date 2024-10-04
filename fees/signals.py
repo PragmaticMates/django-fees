@@ -54,11 +54,11 @@ purchaser_change_package.__doc__ = """
 Sent on account when plan was changed after order completion
 """
 
-activate_purchaser_plan = Signal()
-activate_purchaser_plan.__doc__ = """
-This signal should be called when user has succesfully registered (e.g. he activated account via e-mail activation).
-If you are using django-registration there is no need to call this signal.
-"""
+# activate_purchaser_plan = Signal()
+# activate_purchaser_plan.__doc__ = """
+# This signal should be called when user has succesfully registered (e.g. he activated account via e-mail activation).
+# If you are using django-registration there is no need to call this signal.
+# """
 
 
 @receiver(post_save, sender=get_purchaser_model())
@@ -74,12 +74,12 @@ def set_default_purchaser_plan(sender, instance, created, **kwargs):
 # TODO: check
 # Hook to django-registration to initialize plan automatically after user has confirm account
 
-@receiver(activate_purchaser_plan)
-def initialize_plan_generic(sender, purchaser, **kwargs):
-    try:
-        purchaser.plan.initialize()
-    except Plan.DoesNotExist:
-        return
+# @receiver(activate_purchaser_plan)
+# def initialize_plan_generic(sender, purchaser, **kwargs):
+#     try:
+#         purchaser.plan.initialize()
+#     except Plan.DoesNotExist:
+#         return
 
 
 # @receiver(cart_updated, sender=Cart)
