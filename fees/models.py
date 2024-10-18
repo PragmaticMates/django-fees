@@ -3,7 +3,7 @@ from datetime import date, timedelta
 
 from dateutil.relativedelta import relativedelta
 from django.contrib.contenttypes.models import ContentType
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ImproperlyConfigured
 from django.db import models
 from django.conf import settings
 from django.core.validators import MinValueValidator, EMPTY_VALUES
@@ -104,7 +104,6 @@ class AbstractPackage(models.Model):
         verbose_name_plural = _('packages')
         ordering = ['order']
         constraints = [
-            models.UniqueConstraint(fields=['is_default'], condition=models.Q(is_default=True), name='unique_default'),
             models.UniqueConstraint(fields=['is_fallback'], condition=models.Q(is_fallback=True), name='unique_fallback'),
         ]
 
@@ -116,8 +115,24 @@ class AbstractPackage(models.Model):
 
     @classmethod
     def get_default_package(cls):
+        if fees_settings.MULTIPLE_PLANS:
+            raise ImproperlyConfigured(
+                "FEES_MULTIPLE_PLANS is configured to use multiple default packages"
+            )
         try:
             return_value = cls.objects.get(is_default=True)
+        except cls.DoesNotExist:
+            return_value = None
+        return return_value
+
+    @classmethod
+    def get_default_packages(cls):
+        if not fees_settings.MULTIPLE_PLANS:
+            raise ImproperlyConfigured(
+                "FEES_MULTIPLE_PLANS is configured to use single default package"
+            )
+        try:
+            return_value = cls.objects.filter(is_default=True)
         except cls.DoesNotExist:
             return_value = None
         return return_value
@@ -139,6 +154,11 @@ class AbstractPackage(models.Model):
         """
         # We need to handle both default package (new purchaser -> TRIAL) and expired plan -> fallback
 
+        if fees_settings.MULTIPLE_PLANS:
+            raise ImproperlyConfigured(
+                "FEES_MULTIPLE_PLANS is configured to use multiple current packages"
+            )
+
         is_anonymous = isinstance(purchaser, get_user_model()) and purchaser.is_anonymous
 
         # anonymous user
@@ -152,18 +172,38 @@ class AbstractPackage(models.Model):
         if plan_is_set and not purchaser.plan.is_expired():
             return purchaser.plan.package
 
-        # fallback package
-        fallback_package = get_package_model().get_fallback_package()
+        return get_package_model().__validate_and_return_fallback_package(plan_is_set)
 
-        # validation of fallback package price (fallback package can't be free)
-        if fallback_package is not None and not fallback_package.is_free():
-            if plan_is_set:
-                raise ValidationError(_('Plan has expired and fallback package is not free'))
-            else:
-                raise ValidationError(_('Plan not found and fallback package is not free'))
+    @classmethod
+    def get_current_packages(cls, purchaser):
+        """
+        Get current packages for purchaser.
+        App should be responsible for creating purchaser's plan (after sign up for example).
+        If plan is expired or not present, return fallback package if available else None.
+        """
+        # We need to handle both default package (new purchaser -> TRIAL) and expired plan -> fallback
 
-        # fallback package for expired or not present plan
-        return fallback_package
+        if not fees_settings.MULTIPLE_PLANS:
+            raise ImproperlyConfigured(
+                "FEES_MULTIPLE_PLANS is configured to use single current package"
+            )
+
+
+        is_anonymous = isinstance(purchaser, get_user_model()) and purchaser.is_anonymous
+
+        # anonymous user
+        if not purchaser or is_anonymous:
+            # TODO: any other rules?
+            return None
+
+        plans_are_set = hasattr(purchaser, 'plans') and purchaser.plans is not None
+        not_expired_packages = [plan.package for plan in purchaser.plans if not plan.is_expired()]
+
+        # currently, valid (not expired) packages
+        if plans_are_set and not_expired_packages:
+            return not_expired_packages
+
+        return [get_package_model().__validate_and_return_fallback_package(plans_are_set)]
 
     def get_quotas(self):
         quota_dic = {}
@@ -185,6 +225,21 @@ class AbstractPackage(models.Model):
         return self.pricing_set.filter(period=Pricing.PERIOD_MONTH).order_by('duration').first()
 
     is_free.boolean = True
+
+    @staticmethod
+    def __validate_and_return_fallback_package(plan_is_set):
+        # fallback package
+        fallback_package = get_package_model().get_fallback_package()
+
+        # validation of fallback package price (fallback package can't be free)
+        if fallback_package is not None and not fallback_package.is_free():
+            if plan_is_set:
+                raise ValidationError(_('Plan has expired and fallback package is not free'))
+            else:
+                raise ValidationError(_('Plan not found and fallback package is not free'))
+
+        # fallback package for expired or not present plan
+        return fallback_package
 
 
 class Package(AbstractPackage):
@@ -570,21 +625,29 @@ class Plan(models.Model):
             package = pricing.package
             expiration = now() + pricing.timedelta
         else:
-            package = get_package_model().get_default_package()
+            if fees_settings.MULTIPLE_PLANS:
+                plans = []
+                packages = get_package_model().get_default_packages()
 
-            # check if default package is available
-            if not package:
-                return
-    
-            expiration = None if package.is_free() else now() + timedelta(days=package.trial_duration)
+                # check if default packages is available
+                if not packages:
+                    return
 
-        return Plan.objects.create(
-            purchaser=purchaser,
-            package=package,
-            pricing=pricing,
-            # active=False,
-            expiration=expiration,
-        )
+                for package in packages:
+                    expiration = None if package.is_free() else now() + timedelta(days=package.trial_duration)
+                    plans.append(Plan.objects.create(purchaser=purchaser, package=package, pricing=pricing, expiration=expiration))
+                return plans
+            else:
+                package = get_package_model().get_default_package()
+
+                # check if default packages is available
+                if not package:
+                    return
+
+                expiration = None if package.is_free() else now() + timedelta(days=package.trial_duration)
+
+        return Plan.objects.create(purchaser=purchaser, package=package, pricing=pricing, expiration=expiration)
+
 
     @classmethod
     def create_for_purchasers_without_plan(cls):

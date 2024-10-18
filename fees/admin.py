@@ -8,6 +8,7 @@ from django.utils.html import format_html
 
 from modeltrans.admin import ActiveLanguageMixin
 
+from fees import settings as fees_settings
 from fees.helpers import get_purchaser_model
 from fees.models import Plan, Package, PackageQuota, Quota, Pricing
 
@@ -117,7 +118,7 @@ class PackageAdmin(ActiveLanguageMixin, admin.ModelAdmin):
             return redirect(request.get_full_path())
 
     def save_model(self, request, obj, form, change):
-        if obj.is_default:
+        if obj.is_default and not fees_settings.MULTIPLE_PLANS:
             self.model.objects.filter(is_default=True).exclude(id=obj.id).update(is_default=False)
         if obj.is_fallback:
             self.model.objects.filter(is_fallback=True).exclude(id=obj.id).update(is_fallback=False)
