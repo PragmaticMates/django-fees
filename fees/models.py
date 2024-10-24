@@ -406,7 +406,7 @@ class Plan(models.Model):
         return "%s [%s]" % (self.purchaser, self.package)
 
     def clean(self):
-        existing_plans_with_package = Plan.objects.filter(purchaser=self.purchaser, package=self.package).active()
+        existing_plans_with_package = Plan.objects.filter(purchaser=self.purchaser, package=self.package).active().exclude(pk=self.pk)
 
         if existing_plans_with_package.exists():
             raise ValidationError(_("There is already an active plan with this package"))
