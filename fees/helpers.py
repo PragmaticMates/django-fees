@@ -24,8 +24,8 @@ def invalidate_purchaser_cache(purchaser):
     cache.delete('PurchaserMixin.quotas', version=cache_version)
 
     if fees_settings.MULTIPLE_PLANS:
-        cache.delete('PurchaserMixin.package', version=cache_version)
-        cache.delete('PurchaserMixin.plan', version=cache_version)
-    else:
         cache.delete('PurchaserMixin.packages', version=cache_version)
         cache.delete('PurchaserMixin.plans', version=cache_version)
+    else:
+        cache.delete('PurchaserMixin.package', version=cache_version)
+        cache.delete('PurchaserMixin.plan', version=cache_version)
