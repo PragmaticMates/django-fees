@@ -17,7 +17,7 @@ from pragmatic.managers import EmailManager
 from fees.querysets import PackageQuerySet, PlanQuerySet
 from fees import settings as fees_settings
 from fees import get_package_model
-from .helpers import get_purchaser_model
+from .helpers import get_purchaser_model, invalidate_purchaser_cache
 
 try:
     # older Django
@@ -416,6 +416,8 @@ class Plan(models.Model):
         if self.expiration in EMPTY_VALUES and self.pricing:
             from_date = self.activation or now().date()  # TODO: now().date() vs date.today()
             self.expiration = from_date + self.pricing.timedelta
+
+        invalidate_purchaser_cache(self.purchaser.cache_version)
         return super().save(**kwargs)
 
     # def is_active(self):

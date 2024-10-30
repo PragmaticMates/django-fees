@@ -15,7 +15,7 @@ setup(
     url='https://github.com/PragmaticMates/django-fees',
     packages=find_packages(),
     include_package_data=True,
-    install_requires=('django', 'django-modeltrans'),
+    install_requires=('django', 'django-modeltrans', 'django-pragmatic'),
     classifiers=[
         'Programming Language :: Python',
         'Operating System :: OS Independent',

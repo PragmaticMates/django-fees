@@ -1,0 +1,1 @@
+-e git+https://github.com/PragmaticMates/django-pragmatic.git@a96290fadc654b95c17a43a61482d80d9e0aa5c8#egg=django-pragmatic

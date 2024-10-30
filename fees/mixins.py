@@ -1,6 +1,8 @@
 import datetime
 from django.core.exceptions import ImproperlyConfigured
 
+from pragmatic.decorators import Cached
+
 try:
     # older Django
     from django.utils.translation import ugettext_lazy as _
@@ -15,10 +17,14 @@ from fees import settings as fees_settings
 class PurchaserMixin(object):
     created_attribute = 'created'
 
+    @property
+    def cache_version(self):
+        return self.pk
+
     def is_package_quota_available(self, quota):
         return quota in self.quotas
 
-    @property
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
     def quotas(self):
         if fees_settings.MULTIPLE_PLANS:
             quotas = {}
@@ -31,8 +37,7 @@ class PurchaserMixin(object):
             package = self.package
             return package.get_quotas() if package is not None else {}
 
-
-    @property
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
     def package(self):
         if fees_settings.MULTIPLE_PLANS:
             raise ImproperlyConfigured(
@@ -40,7 +45,7 @@ class PurchaserMixin(object):
             )
         return get_package_model().get_current_package(self)
 
-    @property
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
     def packages(self):
         if not fees_settings.MULTIPLE_PLANS:
             raise ImproperlyConfigured(
@@ -48,7 +53,7 @@ class PurchaserMixin(object):
             )
         return get_package_model().get_current_packages(self)
 
-    @property
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
     def plan(self):
         if fees_settings.MULTIPLE_PLANS:
             raise ImproperlyConfigured(
@@ -62,7 +67,7 @@ class PurchaserMixin(object):
                 # F('expiration').desc(nulls_last=True)
             ).first()
 
-    @property
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
     def plans(self):
         if not fees_settings.MULTIPLE_PLANS:
             raise ImproperlyConfigured(
