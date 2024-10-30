@@ -417,7 +417,7 @@ class Plan(models.Model):
             from_date = self.activation or now().date()  # TODO: now().date() vs date.today()
             self.expiration = from_date + self.pricing.timedelta
 
-        invalidate_purchaser_cache(self.purchaser.cache_version)
+        invalidate_purchaser_cache(self.purchaser)
         return super().save(**kwargs)
 
     # def is_active(self):

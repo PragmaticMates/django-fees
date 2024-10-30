@@ -24,7 +24,7 @@ class PurchaserMixin(object):
     def is_package_quota_available(self, quota):
         return quota in self.quotas
 
-    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION)
     def quotas(self):
         if fees_settings.MULTIPLE_PLANS:
             quotas = {}
@@ -37,7 +37,7 @@ class PurchaserMixin(object):
             package = self.package
             return package.get_quotas() if package is not None else {}
 
-    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION)
     def package(self):
         if fees_settings.MULTIPLE_PLANS:
             raise ImproperlyConfigured(
@@ -45,7 +45,7 @@ class PurchaserMixin(object):
             )
         return get_package_model().get_current_package(self)
 
-    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION)
     def packages(self):
         if not fees_settings.MULTIPLE_PLANS:
             raise ImproperlyConfigured(
@@ -53,7 +53,7 @@ class PurchaserMixin(object):
             )
         return get_package_model().get_current_packages(self)
 
-    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION)
     def plan(self):
         if fees_settings.MULTIPLE_PLANS:
             raise ImproperlyConfigured(
@@ -67,7 +67,7 @@ class PurchaserMixin(object):
                 # F('expiration').desc(nulls_last=True)
             ).first()
 
-    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION, key='purchaser')
+    @Cached.cache_decorator(timeout=fees_settings.CACHE_EXPIRATION)
     def plans(self):
         if not fees_settings.MULTIPLE_PLANS:
             raise ImproperlyConfigured(

@@ -18,9 +18,14 @@ def get_purchaser_model():
             "FEES_PURCHASER_MODEL refers to model '%s' that has not been installed" % fees_settings.PURCHASER_MODEL
         )
 
-def invalidate_purchaser_cache(cache_version):
-    cache.delete('purchaser.quotas', version=cache_version)
-    cache.delete('purchaser.package', version=cache_version)
-    cache.delete('purchaser.packages', version=cache_version)
-    cache.delete('purchaser.plan', version=cache_version)
-    cache.delete('purchaser.plans', version=cache_version)
+
+def invalidate_purchaser_cache(purchaser):
+    cache_version = purchaser.cache_version
+    cache.delete('PurchaserMixin.quotas', version=cache_version)
+
+    if fees_settings.MULTIPLE_PLANS:
+        cache.delete('PurchaserMixin.package', version=cache_version)
+        cache.delete('PurchaserMixin.plan', version=cache_version)
+    else:
+        cache.delete('PurchaserMixin.packages', version=cache_version)
+        cache.delete('PurchaserMixin.plans', version=cache_version)
